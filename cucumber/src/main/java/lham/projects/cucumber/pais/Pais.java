@@ -14,12 +14,13 @@ import javax.validation.constraints.NotNull;
 import lham.projects.cucumber.continente.Continente;
 import lham.projects.cucumber.infra.AbstractEntity;
 
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "PAIS")
 @NamedQueries(value = { @NamedQuery(name = "Pais.findByPk", query = "SELECT p FROM Pais p WHERE p.nome = :pk") })
-public class Pais extends AbstractEntity<String> {
+public class Pais extends AbstractEntity<String> implements Comparable<Pais>  {
 
 	private static final long serialVersionUID = 1L;
 
@@ -85,6 +86,14 @@ public class Pais extends AbstractEntity<String> {
 		} else if (!nome.equals(other.nome))
 			return false;
 		return true;
+	}
+	
+	@Override
+	public int compareTo(Pais pais) {
+		String thisNome = StringUtils.stripAccents(this.nome);
+		String paramNome = StringUtils.stripAccents(pais.getNome());
+		
+		return thisNome.toLowerCase().compareTo(paramNome.toLowerCase());
 	}
 }
 
