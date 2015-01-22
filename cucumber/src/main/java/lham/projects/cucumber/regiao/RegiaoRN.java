@@ -23,7 +23,8 @@ public class RegiaoRN extends AbstractService<Regiao, RegiaoPK> {
 		this.regiaoBD = regiaoBD;
 	}
 	
-	public List<Regiao> paginar(Regiao filtro) {
+	@Override
+	public List<Regiao> find(Regiao filtro) {
 		filtro.getPropLista().addOrdem(new Ordem("id.nomeRegiao"));
 		return super.find(filtro);
 	}

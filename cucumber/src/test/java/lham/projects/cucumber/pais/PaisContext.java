@@ -37,10 +37,6 @@ public class PaisContext extends BaseIT {
     }
     
     protected void cadastrarPais(PaisFactory.Template template, Continente continente) {
-//        if (getContinente()==null){
-//        	continente = continenteRN.insert(new ContinenteFactory().criarContinente("ams"));        	
-//        	setContinente(continente);
-//        }
     	Pais pais = new PaisFactory().criarPais(template);
     	pais.setContinente(continente);    	
         paisRN.insert(pais);
