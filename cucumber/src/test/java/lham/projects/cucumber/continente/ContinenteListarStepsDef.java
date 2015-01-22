@@ -1,5 +1,6 @@
 package lham.projects.cucumber.continente;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -84,23 +85,29 @@ public class ContinenteListarStepsDef extends ContinenteContext {
 
 	@Entao("^devo receber uma listagem com os registros ordenados por nome de forma crescente$")
 	public void devoReceberUmaListagemComOsRegistrosOrdenadosPorNomeDeFormaCrescente() throws Throwable {
-		boolean condicao = "África".equalsIgnoreCase(resposta.get(0).getNome());
-		assertTrue("Devo receber uma listagem com os registros ordenados por nome de forma crescente (get(0)).", condicao);
+		String esperado = "África".toLowerCase();
+		String atual = resposta.get(0).getNome().toLowerCase();
+		assertEquals("Devo receber uma listagem com os registros ordenados por nome de forma crescente (get(0)).", esperado, atual);
 		
-		condicao = "América do Norte".equalsIgnoreCase(resposta.get(1).getNome());
-		assertTrue("Devo receber uma listagem com os registros ordenados por nome de forma crescente (get(1)).", condicao);
+		esperado = "América do Norte".toLowerCase();
+		atual = resposta.get(1).getNome().toLowerCase();
+		assertEquals("Devo receber uma listagem com os registros ordenados por nome de forma crescente (get(1)).", esperado, atual);
 		
-		condicao = "América do Sul".equalsIgnoreCase(resposta.get(2).getNome());
-		assertTrue("Devo receber uma listagem com os registros ordenados por nome de forma crescente (get(2)).", condicao);
+		esperado = "América do Sul".toLowerCase();
+		atual = resposta.get(2).getNome().toLowerCase();
+		assertEquals("Devo receber uma listagem com os registros ordenados por nome de forma crescente (get(2)).", esperado, atual);
 		
-		condicao = "Ásia".equalsIgnoreCase(resposta.get(3).getNome());
-		assertTrue("Devo receber uma listagem com os registros ordenados por nome de forma crescente (get(3)).", condicao);
+		esperado = "Ásia".toLowerCase();
+		atual = resposta.get(3).getNome().toLowerCase();
+		assertEquals("Devo receber uma listagem com os registros ordenados por nome de forma crescente (get(3)).", esperado, atual);
 		
-		condicao = "Europa".equalsIgnoreCase(resposta.get(4).getNome());
-		assertTrue("Devo receber uma listagem com os registros ordenados por nome de forma crescente (get(4)).", condicao);
+		esperado = "Europa".toLowerCase();
+		atual = resposta.get(4).getNome().toLowerCase();
+		assertEquals("Devo receber uma listagem com os registros ordenados por nome de forma crescente (get(4)).", esperado, atual);
 		
-		condicao = "Oceania".equalsIgnoreCase(resposta.get(5).getNome());
-		assertTrue("Devo receber uma listagem com os registros ordenados por nome de forma crescente (get(5)).", condicao);
+		esperado = "Oceania".toLowerCase();
+		atual = resposta.get(5).getNome().toLowerCase();
+		assertEquals("Devo receber uma listagem com os registros ordenados por nome de forma crescente (get(5)).", esperado, atual);
 	}
 
 	/*
