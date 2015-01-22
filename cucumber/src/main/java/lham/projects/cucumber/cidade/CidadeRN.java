@@ -19,5 +19,4 @@ public class CidadeRN extends AbstractService<Cidade, CidadePK> {
 	public void setContinenteBD(CidadeBD cidadeBD) {
 		this.cidadeBD = cidadeBD;
 	}
-
 }
