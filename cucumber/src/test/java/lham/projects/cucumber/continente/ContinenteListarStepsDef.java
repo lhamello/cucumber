@@ -85,19 +85,19 @@ public class ContinenteListarStepsDef extends ContinenteContext {
 
 	@Entao("^devo receber uma listagem com os registros ordenados por nome de forma crescente$")
 	public void devoReceberUmaListagemComOsRegistrosOrdenadosPorNomeDeFormaCrescente() throws Throwable {
-		String esperado = "África".toLowerCase();
+		String esperado = "Africa".toLowerCase();
 		String atual = resposta.get(0).getNome().toLowerCase();
 		assertEquals("Devo receber uma listagem com os registros ordenados por nome de forma crescente (get(0)).", esperado, atual);
 		
-		esperado = "América do Norte".toLowerCase();
+		esperado = "America do Norte".toLowerCase();
 		atual = resposta.get(1).getNome().toLowerCase();
 		assertEquals("Devo receber uma listagem com os registros ordenados por nome de forma crescente (get(1)).", esperado, atual);
 		
-		esperado = "América do Sul".toLowerCase();
+		esperado = "America do Sul".toLowerCase();
 		atual = resposta.get(2).getNome().toLowerCase();
 		assertEquals("Devo receber uma listagem com os registros ordenados por nome de forma crescente (get(2)).", esperado, atual);
 		
-		esperado = "Ásia".toLowerCase();
+		esperado = "Asia".toLowerCase();
 		atual = resposta.get(3).getNome().toLowerCase();
 		assertEquals("Devo receber uma listagem com os registros ordenados por nome de forma crescente (get(3)).", esperado, atual);
 		

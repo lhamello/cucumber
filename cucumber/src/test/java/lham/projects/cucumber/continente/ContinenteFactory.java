@@ -13,25 +13,25 @@ public class ContinenteFactory {
 	private void createTeamFixture() {
 		Fixture.of(Continente.class).addTemplate("ams", new Rule() {
 			{
-				add("nome", "América do Sul");
+				add("nome", "America do Sul");
 				add("codigo", "AMS");
 			}
 		});
 		Fixture.of(Continente.class).addTemplate("amn", new Rule() {
 			{
-				add("nome", "américa do norte");
+				add("nome", "america do norte");
 				add("codigo", "AMN ");
 			}
 		});
 		Fixture.of(Continente.class).addTemplate("afr", new Rule() {
 			{
-				add("nome", "áfrica");
+				add("nome", "africa");
 				add("codigo", "AFR ");
 			}
 		});
 		Fixture.of(Continente.class).addTemplate("asi", new Rule() {
 			{
-				add("nome", "ÁSIA");
+				add("nome", "ASIA");
 				add("codigo", "ASI ");
 			}
 		});

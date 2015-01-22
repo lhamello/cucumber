@@ -3,13 +3,11 @@ package lham.projects.cucumber.cidade;
 import java.io.Serializable;
 
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import lham.projects.cucumber.regiao.Regiao;
 
-@Embeddable
 public class CidadePK implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -21,6 +19,11 @@ public class CidadePK implements Serializable {
 	@ManyToOne
 	private Regiao regiao;
 
+	public CidadePK(String nomeCidade, Regiao regiao) {
+		this.nomeCidade = nomeCidade;
+		this.regiao = regiao;
+	}
+	
 	public String getNomeCidade() {
 		return nomeCidade;
 	}
