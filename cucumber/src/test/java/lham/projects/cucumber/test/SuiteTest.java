@@ -10,7 +10,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ AppSettingsBeanUT.class, ContinenteIT.class, PaisIT.class, RegiaoIT.class })
+@SuiteClasses({ AppSettingsBeanUT.class, ContinenteIT.class, PaisIT.class, RegiaoIT.class})
 public class SuiteTest {
 
 }

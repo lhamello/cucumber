@@ -2,10 +2,11 @@ package lham.projects.cucumber.pais;
 
 import lham.projects.cucumber.continente.Continente;
 import lham.projects.cucumber.continente.ContinenteFactory;
+import lham.projects.cucumber.test.EntityFactory;
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 
-public class PaisFactory {
+public class PaisFactory extends EntityFactory {
 
 	private Continente continente;
 	
@@ -50,6 +51,9 @@ public class PaisFactory {
 				add("nome", "ábrasil");
 				add("codigo", "BR");
 				add("continente", continente);
+				add("dataHoraInclusao", calendar);
+				add("ipUsuarioInclusao", random((Object[]) IP));
+				add("usuarioInclusao", regex("\\d{10}"));
 			}
 		});
 		
@@ -58,6 +62,9 @@ public class PaisFactory {
 				add("nome", "ÁChile");
 				add("codigo", "CHL");
 				add("continente", continente);
+				add("dataHoraInclusao", calendar);
+				add("ipUsuarioInclusao", random((Object[]) IP));
+				add("usuarioInclusao", regex("\\d{10}"));
 			}
 		});
 		
