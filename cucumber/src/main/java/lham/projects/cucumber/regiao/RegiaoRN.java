@@ -16,7 +16,7 @@ public class RegiaoRN extends AbstractService<Regiao, RegiaoPK> {
 		super.setDAO(regiaoBD);
 	}
 
-	public void setContinenteBD(RegiaoBD regiaoBD) {
+	public void setRegiaoBD(RegiaoBD regiaoBD) {
 		this.regiaoBD = regiaoBD;
 	}
 

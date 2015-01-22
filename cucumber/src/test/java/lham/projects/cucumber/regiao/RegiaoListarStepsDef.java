@@ -1,5 +1,7 @@
 package lham.projects.cucumber.regiao;
 
+import static org.junit.Assert.assertTrue;
+
 import java.util.List;
 
 import cucumber.api.PendingException;
@@ -13,6 +15,8 @@ public class RegiaoListarStepsDef extends RegiaoContext {
 
 	private Regiao filtro;
 	private List<Regiao> resposta;
+	private long regioesCadastradas;
+	
 
 	/*
 	 * --------------------------------- Configuração
@@ -27,107 +31,83 @@ public class RegiaoListarStepsDef extends RegiaoContext {
 	public void finalizeScenario() {
 		super.closeConnection();
 	}
-
+	
 	/*
 	 * --------------------------------- Cenários
 	 */
 	
-	
-	@Dado("^que nao existam continentes cadastrados$")
-	public void queNaoExistamContinentesCadastrados() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	@Dado("^que não existam registros cadastrados no banco$")
+	public void queNãoExistamRegistrosCadastradosNoBanco() throws Throwable {		
+		filtro = new Regiao();
 	}
-	
-	@Quando("^acesso a listagem de continentes$")
-	public void acessoAListagemDeContinentes() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+
+	@Quando("^eu acesso a listagem de regiões$")
+	public void euAcessoAListagemDeRegiões() throws Throwable {		
+		filtro = new Regiao();
+		resposta = regiaoRN.find(filtro);
 	}
-	
+
 	@Entao("^devo receber uma lista vazia como resposta$")
 	public void devoReceberUmaListaVaziaComoResposta() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+		assertTrue("Devo receber uma lista vazia como resposta.", resposta.isEmpty());
 	}
 	
 	@Dado("^que existam registros cadastrados no banco$")
 	public void queExistamRegistrosCadastradosNoBanco() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	    this.cadastrarRegioes();
 	}
-	
-	@Dado("^nao passo filtro nenhum para a listagem$")
-	public void naoPassoFiltroNenhumParaAListagem() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+
+	@Dado("^não passo filtro nenhum para a listagem$")
+	public void nãoPassoFiltroNenhumParaAListagem() throws Throwable {
+		filtro = new Regiao();
+		resposta = regiaoRN.find(filtro);
 	}
-	
-	@Entao("^devo receber uma pagina da listagem total$")
-	public void devoReceberUmaPaginaDaListagemTotal() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+
+	@Quando("^acesso a listagem de regiões$")
+	public void acessoAListagemDeRegiões() throws Throwable {
+		filtro = new Regiao();
+		resposta = regiaoRN.find(filtro);
 	}
-	
-	@Entao("^o numero total de continentes cadastrados$")
-	public void oNumeroTotalDeContinentesCadastrados() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+
+	@Entao("^devo receber uma página da listagem total$")
+	public void devoReceberUmaPáginaDaListagemTotal() throws Throwable {
+		final int tamPagina = 2;
+		assertTrue("Devo receber uma pagina da listagem total.", resposta.size() == tamPagina);
 	}
-	
+
+	@Entao("^o numero total de regiões cadastrados$")
+	public void oNumeroTotalDeRegiõesCadastrados() throws Throwable {
+		long tamTotal = regiaoRN.count(filtro);
+		assertTrue("Devo receber uma pagina da listagem total.", tamTotal == regioesCadastradas);
+	}
+
 	@Entao("^devo receber uma listagem com os registros ordenados por nome de forma crescente$")
 	public void devoReceberUmaListagemComOsRegistrosOrdenadosPorNomeDeFormaCrescente() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+		boolean condicao = "Centro-oeste".equalsIgnoreCase(resposta.get(0).getId().getNomeRegiao());
+		assertTrue("Devo receber uma listagem com os registros ordenados por nome de forma crescente (get(0)).", condicao);
 	}
-		
 	
-	
-	
-//	@Dado("^que nao existam continentes cadastrados$")
-//	public void queNaoExistamContinentesCadastrados() throws Throwable {
-//		filtro = new Continente();
-//	}
-//
-//	@Quando("^acesso a listagem de continentes$")
-//	public void acessoAListagemDeContinentes() throws Throwable {
-//		resposta = continenteRN.find(filtro);
-//	}
-//
-//	@Entao("^devo receber uma lista vazia como resposta$")
-//	public void devoReceberUmaListaVaziaComoResposta() throws Throwable {
-//		assertTrue("Devo receber uma lista vazia como resposta.", resposta.isEmpty());
-//	}
-//
-//	@Dado("^que existam registros cadastrados no banco$")
-//	public void queExistamRegistrosCadastradosNoBanco() throws Throwable {
-//		// Write code here that turns the phrase above into concrete actions
-//		throw new PendingException();
-//	}
-//
-//	@Dado("^nao passo filtro nenhum para a listagem$")
-//	public void naoPassoFiltroNenhumParaAListagem() throws Throwable {
-//		// Write code here that turns the phrase above into concrete actions
-//		throw new PendingException();
-//	}
-//
-//	@Entao("^devo receber uma pagina da listagem total$")
-//	public void devoReceberUmaPaginaDaListagemTotal() throws Throwable {
-//		// Write code here that turns the phrase above into concrete actions
-//		throw new PendingException();
-//	}
-//
-//	@Entao("^o numero total de continentes cadastrados$")
-//	public void oNumeroTotalDeContinentesCadastrados() throws Throwable {
-//		// Write code here that turns the phrase above into concrete actions
-//		throw new PendingException();
-//	}
-//
-//	@Entao("^devo receber uma listagem com os registros ordenados por nome de forma crescente$")
-//	public void devoReceberUmaListagemComOsRegistrosOrdenadosPorNomeDeFormaCrescente()
-//			throws Throwable {
-//		// Write code here that turns the phrase above into concrete actions
-//		throw new PendingException();
-//	}
+	/*
+	 * --------------------------------- métodos privados
+	 */
 
+	private void cadastrarRegioes() {
+		super.cadastrarContinente("ams");
+		
+		super.cadastrarPais("br");
+		super.cadastrarPais("chl");		
+		
+		regioesCadastradas = 9;
+
+		super.cadastrarRegiao("br-sul");
+		super.cadastrarRegiao("br-norte");
+		super.cadastrarRegiao("br-sudeste");
+		super.cadastrarRegiao("br-nordeste");
+		super.cadastrarRegiao("br-centrooeste");		
+
+		super.cadastrarRegiao("chl-sul");
+		super.cadastrarRegiao("chl-norte");
+		super.cadastrarRegiao("chl-leste");
+		super.cadastrarRegiao("chl-oeste");
+	}
 }

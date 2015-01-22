@@ -21,6 +21,16 @@ public class RegiaoPK implements Serializable {
 	@ManyToOne
 	private Pais pais;
 
+	public RegiaoPK() {
+		super();
+	}
+
+	public RegiaoPK(String nomeRegiao, Pais pais) {
+		super();
+		this.nomeRegiao = nomeRegiao;
+		this.pais = pais;
+	}
+
 	public String getNomeRegiao() {
 		return nomeRegiao;
 	}
