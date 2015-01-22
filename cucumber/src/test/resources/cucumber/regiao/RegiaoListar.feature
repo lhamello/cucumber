@@ -14,11 +14,11 @@ Funcionalidade: Listar Regiões
   Cenario: Deve retornar uma lista paginada
     Dado que existam registros cadastrados no banco
     E não passo filtro nenhum para a listagem
-	Quando acesso a listagem de regiões
+	Quando eu acesso a listagem de regiões
     Entao devo receber uma página da listagem total
     E o numero total de regiões cadastrados
 
   Cenario: Deve retornar lista ordenada de forma crescente
     Dado que existam registros cadastrados no banco
-    Quando eu acesso a listagem de regiões
+    Quando eu acesso a listagem de regiões sem paginação
     Entao devo receber uma listagem com os registros ordenados por nome de forma crescente

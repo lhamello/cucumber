@@ -1,10 +1,12 @@
 package lham.projects.cucumber.regiao;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import cucumber.api.PendingException;
+import lham.projects.cucumber.continente.Continente;
+import lham.projects.cucumber.pais.PaisFactory;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.es.Dado;
@@ -15,7 +17,7 @@ public class RegiaoListarStepsDef extends RegiaoContext {
 
 	private Regiao filtro;
 	private List<Regiao> resposta;
-	private long regioesCadastradas;
+	final private long regioesCadastradas = 9L;
 	
 
 	/*
@@ -37,14 +39,21 @@ public class RegiaoListarStepsDef extends RegiaoContext {
 	 */
 	
 	@Dado("^que não existam registros cadastrados no banco$")
-	public void queNãoExistamRegistrosCadastradosNoBanco() throws Throwable {		
+	public void queNaoExistamRegistrosCadastradosNoBanco() throws Throwable {		
 		filtro = new Regiao();
 	}
 
 	@Quando("^eu acesso a listagem de regiões$")
-	public void euAcessoAListagemDeRegiões() throws Throwable {		
+	public void euAcessoAListagemDeRegioes() throws Throwable {		
 		filtro = new Regiao();
-		resposta = regiaoRN.find(filtro);
+		resposta = regiaoRN.paginar(filtro);
+	}
+
+	@Quando("^eu acesso a listagem de regiões sem paginação$")
+	public void euAcessoAListagemDeRegioesSemPaginacao() throws Throwable {		
+		filtro = new Regiao();
+		filtro.getPropLista().setTamanho(9); 
+		resposta = regiaoRN.paginar(filtro);
 	}
 
 	@Entao("^devo receber uma lista vazia como resposta$")
@@ -58,33 +67,33 @@ public class RegiaoListarStepsDef extends RegiaoContext {
 	}
 
 	@Dado("^não passo filtro nenhum para a listagem$")
-	public void nãoPassoFiltroNenhumParaAListagem() throws Throwable {
+	public void naoPassoFiltroNenhumParaAListagem() throws Throwable {
 		filtro = new Regiao();
-		resposta = regiaoRN.find(filtro);
-	}
-
-	@Quando("^acesso a listagem de regiões$")
-	public void acessoAListagemDeRegiões() throws Throwable {
-		filtro = new Regiao();
-		resposta = regiaoRN.find(filtro);
+		resposta = regiaoRN.paginar(filtro);
 	}
 
 	@Entao("^devo receber uma página da listagem total$")
-	public void devoReceberUmaPáginaDaListagemTotal() throws Throwable {
+	public void devoReceberUmaPaginaDaListagemTotal() throws Throwable {
 		final int tamPagina = 2;
 		assertTrue("Devo receber uma pagina da listagem total.", resposta.size() == tamPagina);
 	}
 
 	@Entao("^o numero total de regiões cadastrados$")
-	public void oNumeroTotalDeRegiõesCadastrados() throws Throwable {
+	public void oNumeroTotalDeRegioesCadastrados() throws Throwable {
 		long tamTotal = regiaoRN.count(filtro);
 		assertTrue("Devo receber uma pagina da listagem total.", tamTotal == regioesCadastradas);
 	}
 
 	@Entao("^devo receber uma listagem com os registros ordenados por nome de forma crescente$")
 	public void devoReceberUmaListagemComOsRegistrosOrdenadosPorNomeDeFormaCrescente() throws Throwable {
-		boolean condicao = "Centro-oeste".equalsIgnoreCase(resposta.get(0).getId().getNomeRegiao());
-		assertTrue("Devo receber uma listagem com os registros ordenados por nome de forma crescente (get(0)).", condicao);
+		String[] regioesOrdenadas = new String[] {"centro-oeste", "Leste", "Nordeste", "Norte", "Norte", "Oeste", "sudeste", "Sul", "Sul"};
+		String mensagem = "Devo receber uma listagem com os registros ordenados por nome de forma crescente (get(%s)).";
+		
+		for (int i = 0; i < regioesCadastradas; i++) {
+			String esperado = regioesOrdenadas[i].toUpperCase();
+			String retorno = resposta.get(i).getId().getNomeRegiao().toUpperCase();			
+			assertEquals(String.format(mensagem, i), esperado, retorno);
+		}
 	}
 	
 	/*
@@ -92,12 +101,10 @@ public class RegiaoListarStepsDef extends RegiaoContext {
 	 */
 
 	private void cadastrarRegioes() {
-		super.cadastrarContinente("ams");
+		Continente ams = super.cadastrarContinente("ams");
 		
-		super.cadastrarPais("br");
-		super.cadastrarPais("chl");		
-		
-		regioesCadastradas = 9;
+		super.cadastrarPais(PaisFactory.Template.BR, ams);
+		super.cadastrarPais(PaisFactory.Template.CHL, ams);	
 
 		super.cadastrarRegiao("br-sul");
 		super.cadastrarRegiao("br-norte");

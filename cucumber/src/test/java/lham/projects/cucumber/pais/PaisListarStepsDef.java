@@ -79,8 +79,10 @@ public class PaisListarStepsDef extends PaisContext{
 
 	private void cadastrarPaises() {
 		paisesCadastrados = 2;
+		
+		Continente ams = super.cadastrarContinente("ams");
 
-		super.cadastrarPais(PaisFactory.Template.CHL);
-		super.cadastrarPais(PaisFactory.Template.BR);
+		super.cadastrarPais(PaisFactory.Template.CHL, ams);
+		super.cadastrarPais(PaisFactory.Template.BR, ams);
 	}
 }

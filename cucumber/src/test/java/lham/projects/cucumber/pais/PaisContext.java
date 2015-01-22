@@ -36,12 +36,13 @@ public class PaisContext extends BaseIT {
     	continenteRN.setDAO(continenteBD);
     }
     
-    protected void cadastrarPais(PaisFactory.Template template) {
-        if (getContinente()==null){
-        	continente = continenteRN.insert(new ContinenteFactory().criarContinente("ams"));        	
-        	setContinente(continente);
-        }
-    	Pais pais = new PaisFactory().criarPais(template, continente);
+    protected void cadastrarPais(PaisFactory.Template template, Continente continente) {
+//        if (getContinente()==null){
+//        	continente = continenteRN.insert(new ContinenteFactory().criarContinente("ams"));        	
+//        	setContinente(continente);
+//        }
+    	Pais pais = new PaisFactory().criarPais(template);
+    	pais.setContinente(continente);    	
         paisRN.insert(pais);
     }
     
@@ -52,6 +53,11 @@ public class PaisContext extends BaseIT {
 	public void setContinente(Continente continente) {
 		this.continente = continente;
 	}
+	
+	protected Continente cadastrarContinente(String template) {
+        Continente continente = new ContinenteFactory().criarContinente(template);
+        return continenteRN.insert(continente);
+    }
 
 
 }

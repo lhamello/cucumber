@@ -7,6 +7,7 @@ import lham.projects.cucumber.continente.ContinenteRN;
 import lham.projects.cucumber.pais.Pais;
 import lham.projects.cucumber.pais.PaisBD;
 import lham.projects.cucumber.pais.PaisFactory;
+import lham.projects.cucumber.pais.PaisFactory.Template;
 import lham.projects.cucumber.pais.PaisRN;
 import lham.projects.cucumber.test.BaseIT;
 
@@ -45,15 +46,20 @@ public class RegiaoContext extends BaseIT {
     	regiaoRN.setDAO(regiaoBD);
     } 
 	
-	protected void cadastrarContinente(String template) {
+	protected Continente cadastrarContinente(String template) {
         Continente continente = new ContinenteFactory().criarContinente(template);
-        continenteRN.insert(continente);
+        return continenteRN.insert(continente);
     }
 	
-	protected void cadastrarPais(String template) {
-        Pais pais = new PaisFactory().criarPais(template);
-        paisRN.insert(pais);
-    }
+	protected void cadastrarPais(PaisFactory.Template template, Continente continente) {
+//      if (getContinente()==null){
+//      	continente = continenteRN.insert(new ContinenteFactory().criarContinente("ams"));        	
+//      	setContinente(continente);
+//      }
+		Pais pais = new PaisFactory().criarPais(template);
+		pais.setContinente(continente);    	
+		paisRN.insert(pais);
+  }
 	
 	protected void cadastrarRegiao(String template) {
         Regiao regiao = new RegiaoFactory().criarRegiao(template);

@@ -53,6 +53,14 @@ public class Pais extends AbstractEntity<String> implements Comparable<Pais>  {
 		this.nome = nome;
 	}
 
+	public Continente getContinente() {
+		return continente;
+	}
+
+	public void setContinente(Continente continente) {
+		this.continente = continente;
+	}
+
 	@Override
 	public String getPrimaryKey() {
 		return this.getNome();

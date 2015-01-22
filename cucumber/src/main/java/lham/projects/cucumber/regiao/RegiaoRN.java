@@ -1,8 +1,11 @@
 package lham.projects.cucumber.regiao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import lham.projects.cucumber.infra.AbstractService;
+import lham.projects.cucumber.infra.Ordem;
 
 public class RegiaoRN extends AbstractService<Regiao, RegiaoPK> {
 
@@ -19,5 +22,9 @@ public class RegiaoRN extends AbstractService<Regiao, RegiaoPK> {
 	public void setRegiaoBD(RegiaoBD regiaoBD) {
 		this.regiaoBD = regiaoBD;
 	}
-
+	
+	public List<Regiao> paginar(Regiao filtro) {
+		filtro.getPropLista().addOrdem(new Ordem("id.nomeRegiao"));
+		return super.find(filtro);
+	}
 }

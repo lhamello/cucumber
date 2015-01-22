@@ -7,11 +7,9 @@ import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 
 public class PaisFactory extends EntityFactory {
-
-	private Continente continente;
 	
 	static public enum Template { 
-		BR("BR"),CHL("CHL"); 
+		BR("BR"), CHL("CHL"), ITA("ITA"); 
 		
 		public String valor; 
 		
@@ -33,24 +31,21 @@ public class PaisFactory extends EntityFactory {
 		}
 	}
 	
-	public Pais criarPais(String template) { 
+	public Pais criarPais(Template template) { 
 		this.createTeamFixture();
-		return Fixture.from(Pais.class).gimme(template);
-	}
-	
-	public Pais criarPais(Template template, Continente  cont) { 
-		setContinente(cont);
-		this.createTeamFixture();
-		return Fixture.from(Pais.class).gimme(template.toString());
+		return Fixture.from(Pais.class).gimme(template.getValor());
 	}
 	
 	private void createTeamFixture() {
 		ContinenteFactory continenteFactory = new ContinenteFactory();
+		final Continente ams = continenteFactory.criarContinente("ams");
+		final Continente eur = continenteFactory.criarContinente("eur");
+		
 		Fixture.of(Pais.class).addTemplate(Template.BR.toString(), new Rule() {
 			{
 				add("nome", "ábrasil");
 				add("codigo", "BR");
-				add("continente", continente);
+				add("continente", ams);
 				add("dataHoraInclusao", calendar);
 				add("ipUsuarioInclusao", random((Object[]) IP));
 				add("usuarioInclusao", regex("\\d{10}"));
@@ -61,20 +56,23 @@ public class PaisFactory extends EntityFactory {
 			{
 				add("nome", "ÁChile");
 				add("codigo", "CHL");
-				add("continente", continente);
+				add("continente", ams);
 				add("dataHoraInclusao", calendar);
 				add("ipUsuarioInclusao", random((Object[]) IP));
 				add("usuarioInclusao", regex("\\d{10}"));
 			}
 		});
 		
-	}
-
-	public Continente getContinente() {
-		return continente;
-	}
-
-	public void setContinente(Continente continente) {
-		this.continente = continente;
+		Fixture.of(Pais.class).addTemplate(Template.CHL.toString(), new Rule() {
+			{
+				add("nome", "Itália");
+				add("codigo", "CHL");
+				add("continente", eur);
+				add("dataHoraInclusao", calendar);
+				add("ipUsuarioInclusao", random((Object[]) IP));
+				add("usuarioInclusao", regex("\\d{10}"));
+			}
+		});
+		
 	}
 }
