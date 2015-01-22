@@ -1,7 +1,5 @@
 package lham.projects.cucumber.pais;
 
-import lham.projects.cucumber.continente.Continente;
-import lham.projects.cucumber.continente.ContinenteFactory;
 import lham.projects.cucumber.test.BaseIT;
 
 public class PaisContext extends BaseIT {
