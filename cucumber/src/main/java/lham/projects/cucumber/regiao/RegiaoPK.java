@@ -4,8 +4,12 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 import lham.projects.cucumber.pais.Pais;
 
@@ -15,10 +19,12 @@ public class RegiaoPK implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Column(name = "NOME", length = 100, nullable = false)
+	@NotBlank
 	private String nomeRegiao;
 
 	@JoinColumn(name = "PAIS", nullable = false)
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
+	@NotNull
 	private Pais pais;
 
 	public RegiaoPK() {
