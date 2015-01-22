@@ -1,0 +1,13 @@
+CONTINENTE:
+  - NOME: "Africa"
+    CODIGO: "AFR"
+  - NOME: "ASIA"
+    CODIGO: "ASI"
+  - NOME: "Europa"
+    CODIGO: "EU"
+  - NOME: "Oceania"
+    CODIGO: "OCE"
+  - NOME: "america do norte"
+    CODIGO: "AMN"
+  - NOME: "america do sul"
+    CODIGO: "AMS"
