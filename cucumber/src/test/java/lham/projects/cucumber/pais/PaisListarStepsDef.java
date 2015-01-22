@@ -54,6 +54,7 @@ public class PaisListarStepsDef extends PaisContext{
 	@Dado("^que existam registros cadastrados no banco$")
 	public void queExistamRegistrosCadastradosNoBanco() throws Throwable {
 		cadastrarPaises();
+		filtro = new Pais();
 	}
 
 	@Entao("^devo receber uma listagem com todos os registros$")
@@ -67,9 +68,9 @@ public class PaisListarStepsDef extends PaisContext{
 	public void devoReceberUmaListagemComOsRegistrosOrdenadosPorNomeDeFormaCrescente() throws Throwable {
 		resposta = paisRN.find(filtro);
 		assertTrue("Devo receber uma listagem com os registros ordenados por nome de forma crescente.",				
-				resposta.get(0).getCodigo().equals("br"));
+				resposta.get(0).getCodigo().equals("BR"));
 		assertTrue("Devo receber uma listagem com os registros ordenados por nome de forma crescente.", 
-				resposta.get(1).getCodigo().equals("chl"));
+				resposta.get(1).getCodigo().equals("CHL"));
 	}
 
 	/*
@@ -79,7 +80,7 @@ public class PaisListarStepsDef extends PaisContext{
 	private void cadastrarPaises() {
 		paisesCadastrados = 2;
 
-		super.cadastrarPais("chl");
-		super.cadastrarPais("br");
+		super.cadastrarPais(PaisFactory.Template.CHL);
+		super.cadastrarPais(PaisFactory.Template.BR);
 	}
 }

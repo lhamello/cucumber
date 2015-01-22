@@ -85,29 +85,21 @@ public class ContinenteListarStepsDef extends ContinenteContext {
 
 	@Entao("^devo receber uma listagem com os registros ordenados por nome de forma crescente$")
 	public void devoReceberUmaListagemComOsRegistrosOrdenadosPorNomeDeFormaCrescente() throws Throwable {
-		String esperado = "Africa".toLowerCase();
-		String atual = resposta.get(0).getNome().toLowerCase();
-		assertEquals("Devo receber uma listagem com os registros ordenados por nome de forma crescente (get(0)).", esperado, atual);
+		String[] array = { "Africa", "America do Norte", "America do Sul", "Asia", "Europa", "Oceania" };
+		String prefixo = "Devo receber uma listagem com os registros ordenados por nome de forma crescente (get(";
+		String sufixo = ")).";
+		int indice = 0;
 		
-		esperado = "America do Norte".toLowerCase();
-		atual = resposta.get(1).getNome().toLowerCase();
-		assertEquals("Devo receber uma listagem com os registros ordenados por nome de forma crescente (get(1)).", esperado, atual);
-		
-		esperado = "America do Sul".toLowerCase();
-		atual = resposta.get(2).getNome().toLowerCase();
-		assertEquals("Devo receber uma listagem com os registros ordenados por nome de forma crescente (get(2)).", esperado, atual);
-		
-		esperado = "Asia".toLowerCase();
-		atual = resposta.get(3).getNome().toLowerCase();
-		assertEquals("Devo receber uma listagem com os registros ordenados por nome de forma crescente (get(3)).", esperado, atual);
-		
-		esperado = "Europa".toLowerCase();
-		atual = resposta.get(4).getNome().toLowerCase();
-		assertEquals("Devo receber uma listagem com os registros ordenados por nome de forma crescente (get(4)).", esperado, atual);
-		
-		esperado = "Oceania".toLowerCase();
-		atual = resposta.get(5).getNome().toLowerCase();
-		assertEquals("Devo receber uma listagem com os registros ordenados por nome de forma crescente (get(5)).", esperado, atual);
+		for (Continente continente : resposta) {
+			StringBuilder msgTeste = new StringBuilder(90);
+			msgTeste.append(prefixo).append(indice).append(sufixo);
+			
+			String esperado = array[indice].toLowerCase();
+			String atual = continente.getNome().toLowerCase();
+			
+			assertEquals(msgTeste.toString(), esperado, atual);	
+			indice++;
+		}
 	}
 
 	/*
