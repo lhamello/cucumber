@@ -16,33 +16,60 @@ import lham.projects.cucumber.infra.AbstractEntity;
 @NamedQueries(value = { @NamedQuery(name = "Cidade.findByPk", query = "SELECT c FROM Cidade c WHERE c.id = :pk") })
 public class Cidade extends AbstractEntity<CidadePK> {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	private CidadePK id;
+    @Id
+    private CidadePK id;
 
-	@Column(name = "PIB", nullable = false)
-	private Long pib;
+    @Column(name = "PIB", nullable = false)
+    private Long pib;
 
-	@Column(name = "CLASSIFICAO", nullable = false)
-	@Enumerated(EnumType.STRING)
-	private ClassificaoCidade classificacao;
+    @Column(name = "CLASSIFICAO", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private ClassificaoCidade classificacao;
 
-	public CidadePK getId() {
-		return id;
-	}
+    @Column(name = "POPULACAO", nullable = true)
+    private Long populacao;
 
-	public void setId(CidadePK id) {
-		this.id = id;
-	}
+    public CidadePK getId() {
+        return id;
+    }
 
-	@Override
-	public CidadePK getPrimaryKey() {
-		return this.getId();
-	}
+    public void setId(CidadePK id) {
+        this.id = id;
+    }
 
-	@Override
-	public void setPrimaryKey(CidadePK primaryKey) {
-		this.setId(primaryKey);
-	}
+    public Long getPib() {
+        return pib;
+    }
+
+    public void setPib(Long pib) {
+        this.pib = pib;
+    }
+
+    public ClassificaoCidade getClassificacao() {
+        return classificacao;
+    }
+
+    public void setClassificacao(ClassificaoCidade classificacao) {
+        this.classificacao = classificacao;
+    }
+
+    public Long getPopulacao() {
+        return populacao;
+    }
+
+    public void setPopulacao(Long populacao) {
+        this.populacao = populacao;
+    }
+
+    @Override
+    public CidadePK getPrimaryKey() {
+        return this.getId();
+    }
+
+    @Override
+    public void setPrimaryKey(CidadePK primaryKey) {
+        this.setId(primaryKey);
+    }
 }
