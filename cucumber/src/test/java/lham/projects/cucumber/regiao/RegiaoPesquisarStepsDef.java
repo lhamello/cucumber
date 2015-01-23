@@ -1,13 +1,12 @@
 package lham.projects.cucumber.regiao;
 
+import static org.junit.Assert.assertEquals;
 import lham.projects.cucumber.pais.Pais;
-import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.es.Dado;
 import cucumber.api.java.it.Quando;
 import cucumber.api.java.pt.Entao;
-import static org.junit.Assert.assertEquals;
 
 public class RegiaoPesquisarStepsDef extends RegiaoContext {
 
