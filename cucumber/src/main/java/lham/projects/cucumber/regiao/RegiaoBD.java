@@ -15,6 +15,9 @@ public class RegiaoBD extends BaseDAO<Regiao, RegiaoPK> {
 		if (filtro.getId() != null && filtro.getId().getPais() != null && filtro.getId().getPais().getNome() != null) {
 			dc.add(Restrictions.eq("id.pais.nome", filtro.getId().getPais().getNome()));
 		}
+		if (filtro.getArea() != null) {
+			dc.add(Restrictions.eq("area", filtro.getArea()));
+		}
     	return dc;
     }  
 }

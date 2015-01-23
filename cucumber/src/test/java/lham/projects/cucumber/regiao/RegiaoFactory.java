@@ -23,7 +23,7 @@ public class RegiaoFactory extends EntityFactory {
 				new Rule() {
 					{
 						add("id", new RegiaoPK("Sul", brasil));
-						add("area", 1000L);
+						add("area", 2000L);
 						add("dataHoraInclusao", calendar);
 						add("ipUsuarioInclusao", random((Object[]) IP));
 						add("usuarioInclusao", regex("\\d{10}"));
@@ -87,7 +87,7 @@ public class RegiaoFactory extends EntityFactory {
 				new Rule() {
 					{
 						add("id", new RegiaoPK("Norte", chile));
-						add("area", 1000L);
+						add("area", 2000L);
 						add("dataHoraInclusao", calendar);
 						add("ipUsuarioInclusao", random((Object[]) IP));
 						add("usuarioInclusao", regex("\\d{10}"));
@@ -97,7 +97,7 @@ public class RegiaoFactory extends EntityFactory {
 				new Rule() {
 					{
 						add("id", new RegiaoPK("Leste", chile));
-						add("area", 1000L);
+						add("area", 2000L);
 						add("dataHoraInclusao", calendar);
 						add("ipUsuarioInclusao", random((Object[]) IP));
 						add("usuarioInclusao", regex("\\d{10}"));
@@ -107,7 +107,7 @@ public class RegiaoFactory extends EntityFactory {
 				new Rule() {
 					{
 						add("id", new RegiaoPK("Oeste", chile));
-						add("area", 1000L);
+						add("area", 2000L);
 						add("dataHoraInclusao", calendar);
 						add("ipUsuarioInclusao", random((Object[]) IP));
 						add("usuarioInclusao", regex("\\d{10}"));

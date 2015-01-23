@@ -90,9 +90,9 @@ public class RegiaoContext extends BaseIT {
 	}
 	
 	protected void verificaLista(String[] regioesEsperadas, String mensagem) throws Throwable {
-		assertEquals("Quantidade correta de registros", regioesEsperadas.length, lista.size());		
+		assertEquals("Quantidade correta de registros", regioesEsperadas.length, lista.size());			
+		mensagem = mensagem + " (get(%s)).";	
 		
-		mensagem = mensagem + " (get(%s)).";		
 		for (int i = 0; i < regioesEsperadas.length; i++) {
 			String esperado = regioesEsperadas[i].toUpperCase();
 			String retorno = lista.get(i).getId().getNomeRegiao().toUpperCase();			

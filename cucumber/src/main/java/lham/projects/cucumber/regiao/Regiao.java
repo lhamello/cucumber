@@ -30,6 +30,14 @@ public class Regiao extends AbstractEntity<RegiaoPK> {
 		this.id = id;
 	}
 
+	public Long getArea() {
+		return area;
+	}
+
+	public void setArea(Long area) {
+		this.area = area;
+	}
+
 	@Override
 	public RegiaoPK getPrimaryKey() {
 		return this.getId();
