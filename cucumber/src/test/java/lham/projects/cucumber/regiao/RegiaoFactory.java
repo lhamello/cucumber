@@ -8,9 +8,9 @@ import br.com.six2six.fixturefactory.Rule;
 
 public class RegiaoFactory extends EntityFactory {
 
-	public Regiao criarRegiao(String template) {
+	public Regiao criarRegiao(RegiaoTemplateEnum template) {
 		this.createTeamFixture();
-		return Fixture.from(Regiao.class).gimme(template);
+		return Fixture.from(Regiao.class).gimme(template.toString());
 	}
 
 	private void createTeamFixture() {
@@ -19,7 +19,7 @@ public class RegiaoFactory extends EntityFactory {
 		final Pais brasil = paisFactory.criarPais(PaisFactory.Template.BR);		
 		final Pais chile = paisFactory.criarPais(PaisFactory.Template.CHL);
 		
-		Fixture.of(Regiao.class).addTemplate("br-sul",
+		Fixture.of(Regiao.class).addTemplate(RegiaoTemplateEnum.BR_SUL.toString(),
 				new Rule() {
 					{
 						add("id", new RegiaoPK("Sul", brasil));
@@ -29,7 +29,7 @@ public class RegiaoFactory extends EntityFactory {
 						add("usuarioInclusao", regex("\\d{10}"));
 					}
 				});
-		Fixture.of(Regiao.class).addTemplate("br-norte",
+		Fixture.of(Regiao.class).addTemplate(RegiaoTemplateEnum.BR_NORTE.toString(),
 				new Rule() {
 					{
 						add("id", new RegiaoPK("Norte", brasil));
@@ -39,7 +39,7 @@ public class RegiaoFactory extends EntityFactory {
 						add("usuarioInclusao", regex("\\d{10}"));
 					}
 				});
-		Fixture.of(Regiao.class).addTemplate("br-sudeste",
+		Fixture.of(Regiao.class).addTemplate(RegiaoTemplateEnum.BR_SUDESTE.toString(),
 				new Rule() {
 					{
 						add("id", new RegiaoPK("sudeste", brasil));
@@ -49,7 +49,7 @@ public class RegiaoFactory extends EntityFactory {
 						add("usuarioInclusao", regex("\\d{10}"));
 					}
 				});
-		Fixture.of(Regiao.class).addTemplate("br-nordeste",
+		Fixture.of(Regiao.class).addTemplate(RegiaoTemplateEnum.BR_NORDESTE.toString(),
 				new Rule() {
 					{
 						add("id", new RegiaoPK("Nordeste", brasil));
@@ -59,7 +59,7 @@ public class RegiaoFactory extends EntityFactory {
 						add("usuarioInclusao", regex("\\d{10}"));
 					}
 				});
-		Fixture.of(Regiao.class).addTemplate("br-centrooeste",
+		Fixture.of(Regiao.class).addTemplate(RegiaoTemplateEnum.BR_CENTRO_OESTE.toString(),
 				new Rule() {
 					{
 						add("id", new RegiaoPK("centro-oeste", brasil));
@@ -73,7 +73,7 @@ public class RegiaoFactory extends EntityFactory {
 		
 
 		
-		Fixture.of(Regiao.class).addTemplate("chl-sul",
+		Fixture.of(Regiao.class).addTemplate(RegiaoTemplateEnum.CHL_SUL.toString(),
 				new Rule() {
 					{
 						add("id", new RegiaoPK("Sul", chile));
@@ -83,7 +83,7 @@ public class RegiaoFactory extends EntityFactory {
 						add("usuarioInclusao", regex("\\d{10}"));
 					}
 				});
-		Fixture.of(Regiao.class).addTemplate("chl-norte",
+		Fixture.of(Regiao.class).addTemplate(RegiaoTemplateEnum.CHL_NORTE.toString(),
 				new Rule() {
 					{
 						add("id", new RegiaoPK("Norte", chile));
@@ -93,7 +93,7 @@ public class RegiaoFactory extends EntityFactory {
 						add("usuarioInclusao", regex("\\d{10}"));
 					}
 				});
-		Fixture.of(Regiao.class).addTemplate("chl-leste",
+		Fixture.of(Regiao.class).addTemplate(RegiaoTemplateEnum.CHL_LESTE.toString(),
 				new Rule() {
 					{
 						add("id", new RegiaoPK("Leste", chile));
@@ -103,7 +103,7 @@ public class RegiaoFactory extends EntityFactory {
 						add("usuarioInclusao", regex("\\d{10}"));
 					}
 				});
-		Fixture.of(Regiao.class).addTemplate("chl-oeste",
+		Fixture.of(Regiao.class).addTemplate(RegiaoTemplateEnum.CHL_OESTE.toString(),
 				new Rule() {
 					{
 						add("id", new RegiaoPK("Oeste", chile));

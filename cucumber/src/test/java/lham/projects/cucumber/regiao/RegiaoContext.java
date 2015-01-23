@@ -7,7 +7,6 @@ import lham.projects.cucumber.continente.ContinenteRN;
 import lham.projects.cucumber.pais.Pais;
 import lham.projects.cucumber.pais.PaisBD;
 import lham.projects.cucumber.pais.PaisFactory;
-import lham.projects.cucumber.pais.PaisFactory.Template;
 import lham.projects.cucumber.pais.PaisRN;
 import lham.projects.cucumber.test.BaseIT;
 
@@ -57,7 +56,7 @@ public class RegiaoContext extends BaseIT {
 		paisRN.insert(pais);
   }
 	
-	protected void cadastrarRegiao(String template) {
+	protected void cadastrarRegiao(RegiaoTemplateEnum template) {
         Regiao regiao = new RegiaoFactory().criarRegiao(template);
         regiaoRN.insert(regiao);
     }

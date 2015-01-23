@@ -106,15 +106,15 @@ public class RegiaoListarStepsDef extends RegiaoContext {
 		super.cadastrarPais(PaisFactory.Template.BR, ams);
 		super.cadastrarPais(PaisFactory.Template.CHL, ams);	
 
-		super.cadastrarRegiao("br-sul");
-		super.cadastrarRegiao("br-norte");
-		super.cadastrarRegiao("br-sudeste");
-		super.cadastrarRegiao("br-nordeste");
-		super.cadastrarRegiao("br-centrooeste");		
+		super.cadastrarRegiao(RegiaoTemplateEnum.BR_SUL);
+		super.cadastrarRegiao(RegiaoTemplateEnum.BR_NORTE);
+		super.cadastrarRegiao(RegiaoTemplateEnum.BR_SUDESTE);
+		super.cadastrarRegiao(RegiaoTemplateEnum.BR_NORDESTE);
+		super.cadastrarRegiao(RegiaoTemplateEnum.BR_CENTRO_OESTE);		
 
-		super.cadastrarRegiao("chl-sul");
-		super.cadastrarRegiao("chl-norte");
-		super.cadastrarRegiao("chl-leste");
-		super.cadastrarRegiao("chl-oeste");
+		super.cadastrarRegiao(RegiaoTemplateEnum.CHL_SUL);
+		super.cadastrarRegiao(RegiaoTemplateEnum.CHL_NORTE);
+		super.cadastrarRegiao(RegiaoTemplateEnum.CHL_LESTE);
+		super.cadastrarRegiao(RegiaoTemplateEnum.CHL_OESTE);
 	}
 }
