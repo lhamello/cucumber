@@ -38,7 +38,12 @@ public class BaseDAO<E extends AbstractEntity<K>, K> {
     public BaseDAO() {
         final ParameterizedType superClass = (ParameterizedType) this.getClass().getGenericSuperclass();
         this.entityClass = (Class<E>) superClass.getActualTypeArguments()[0];
-    }
+    }    
+    
+    public DetachedCriteria addRestrictions(DetachedCriteria detachedCriteria, final E entity) {
+    	detachedCriteria.add(Example.create(entity).enableLike(MatchMode.ANYWHERE).ignoreCase());
+    	return detachedCriteria;
+    }    
 
     /**
      * Pesquisa uma lista de registros no banco de dados a partir dos critérios
@@ -53,9 +58,9 @@ public class BaseDAO<E extends AbstractEntity<K>, K> {
      */
     @SuppressWarnings("unchecked")
     public List<E> find(final E entity) {
-        final DetachedCriteria detachedCriteria = DetachedCriteria.forClass(entityClass);
+        DetachedCriteria detachedCriteria = DetachedCriteria.forClass(entityClass);
         
-        detachedCriteria.add(Example.create(entity).enableLike(MatchMode.ANYWHERE).ignoreCase());
+        detachedCriteria = this.addRestrictions(detachedCriteria, entity);
         
         this.addOrder(entity, detachedCriteria);
         

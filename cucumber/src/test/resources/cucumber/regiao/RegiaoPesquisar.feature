@@ -8,9 +8,9 @@ Funcionalidade: Pesquisar Regiões
 
   Esquema do Cenario: Deve pesquisar regiões por filtro existente
     Dado que existam regiões cadastradas
-    E preencho o <filtro> com um valor válido
+    E eu preencho o filtro <filtro> com um valor válido
     Quando eu efetuo a pesquisa de regiões
-    Entao são apresentados os registros correspondentes ao filtro informado
+    Entao são apresentados os registros correspondentes ao filtro <filtro> informado
 
     Exemplos: 
       | filtro |
@@ -20,7 +20,7 @@ Funcionalidade: Pesquisar Regiões
 
   Esquema do Cenario: Deve pesquisar regiões por filtro inexistente
     Dado que existam regiões cadastradas
-    E preencho o <filtro> com um valor inválido
+    E eu preencho o filtro <filtro> com um valor inválido
     Quando eu efetuo a pesquisa de regiões
     Entao nenhum registro é retornado pela pesquisa
 
@@ -30,19 +30,19 @@ Funcionalidade: Pesquisar Regiões
       | pais   |
       | area   |
 
-  Cenario: Deve pesquisar região por todos filtros existentes
+  Cenario: Deve pesquisar regiões por todos filtros existentes
     Dado que existam regiões cadastradas
-    E preencho o filtro nome com um valor válido
-    E preencho o filtro pais com um valor válido
-    E preencho o filtro area com um valor válido
+    E eu preencho o filtro nome com um valor válido
+    E eu preencho o filtro pais com um valor válido
+    E eu preencho o filtro area com um valor válido
     Quando eu efetuo a pesquisa de regiões
     Entao são apresentados os registros correspondentes ao filtro informado
 
   Cenario: Deve pesquisar região por todos filtros inexistentes
     Dado que existam regiões cadastradas
-    E preencho o filtro nome com um valor inválido
-    E preencho o filtro pais com um valor inválido
-    E preencho o filtro area com um valor inválido
+    E eu preencho o filtro nome com um valor inválido
+    E eu preencho o filtro pais com um valor inválido
+    E eu preencho o filtro area com um valor inválido
     Quando eu efetuo a pesquisa de regiões
     Entao nenhum registro é retornado pela pesquisa
     

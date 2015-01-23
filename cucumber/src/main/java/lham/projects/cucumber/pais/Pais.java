@@ -36,6 +36,18 @@ public class Pais extends AbstractEntity<String> implements Comparable<Pais>  {
 	
 	@Column(name = "CODIGO", nullable = false, length = 3, unique = true)
 	private String codigo;
+	
+	
+
+	public Pais() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Pais(String nome) {
+		super();
+		this.nome = nome;
+	}
 
 	public String getCodigo() {
 		return codigo;

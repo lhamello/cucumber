@@ -7,7 +7,13 @@ import cucumber.api.SnippetType;
 import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = { "src/test/resources/cucumber/regiao/RegiaoListar.feature" }, snippets = SnippetType.CAMELCASE)
+@CucumberOptions(
+	features = { 
+			"src/test/resources/cucumber/regiao/RegiaoListar.feature",
+			"src/test/resources/cucumber/regiao/RegiaoPesquisar.feature"
+			}, 
+	snippets = SnippetType.CAMELCASE
+	)
 public class RegiaoIT {
 
 }
