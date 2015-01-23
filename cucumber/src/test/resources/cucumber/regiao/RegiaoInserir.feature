@@ -9,7 +9,7 @@ Funcionalidade: Alterar Regiões
   Cenario: Deve inserir uma região
     Dado que quero efetuar o cadastro de uma nova "regiaoValida"
     Quando eu efetuo a operação de inserir uma região
-    Entao a consulta pelo campo nome deve retornar 1 registro
+    Entao a consulta pelos campos nome e pais deve retornar 1 registro
 
   Esquema do Cenario: Deve validar campos obrigatórios
     Dado que quero efetuar o cadastro de um nova "regiaoValida"
