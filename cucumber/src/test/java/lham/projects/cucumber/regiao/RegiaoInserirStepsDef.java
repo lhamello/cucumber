@@ -1,15 +1,15 @@
 package lham.projects.cucumber.regiao;
 
+import static org.junit.Assert.assertEquals;
 import lham.projects.cucumber.continente.Continente;
+import lham.projects.cucumber.infra.RNException;
 import lham.projects.cucumber.pais.Pais;
 import lham.projects.cucumber.pais.PaisFactory;
-import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.es.Dado;
 import cucumber.api.java.it.Quando;
 import cucumber.api.java.pt.Entao;
-import static org.junit.Assert.assertEquals;
 
 public class RegiaoInserirStepsDef extends RegiaoContext {
 
@@ -43,7 +43,7 @@ public class RegiaoInserirStepsDef extends RegiaoContext {
 	public void euEfetuoAOperacaoDeInserirARegiao() throws Throwable {
 		try {
 			regiaoRN.insert(regiao);
-		} catch (Exception e) {
+		} catch (RNException e) {
 			mensagemErro = e.getMessage();
 		}	    
 	}
