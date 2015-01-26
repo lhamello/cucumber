@@ -32,19 +32,22 @@ public class RegiaoRN extends AbstractService<Regiao, RegiaoPK> {
 		return super.find(filtro);
 	}
 	
+	private void validarCamposObrigatorios(PersistenceException e) {
+		Throwable causa = e.getCause().getCause();
+		if (causa != null 
+				&& causa.toString().contains("integrity constraint violation: NOT NULL check constraint")) {
+			throw new RNException("Campos obrigatórios não informados.");
+		}
+	}
+	
 	@Override
 	public Regiao insert(Regiao regiao) {
 		try {
-			regiao = regiaoBD.insert(regiao);
-			
+			regiao = regiaoBD.insert(regiao);			
 		} catch (EntityExistsException e) {
-			throw new RNException("Região já cadastrada.");
-			
+			throw new RNException("Região já cadastrada.");			
 		} catch (PersistenceException e) {
-			Throwable causa = e.getCause().getCause();
-			if (causa != null && causa.toString().contains("integrity constraint violation: NOT NULL check constraint")) {
-				throw new RNException("Campos obrigatórios não informados.");
-			}			
+			this.validarCamposObrigatorios(e);			
 		}
 		return regiao;
     }
