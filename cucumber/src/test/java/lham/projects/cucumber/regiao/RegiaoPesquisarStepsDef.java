@@ -55,7 +55,7 @@ public class RegiaoPesquisarStepsDef extends RegiaoContext {
 
 	@Dado("^eu preencho o filtro pais com um valor válido$")
 	public void euPreenchoOFiltroPaisComUmValorValido() throws Throwable {
-		filtro.setId(new RegiaoPK(null, new Pais("ábrasil")));
+		filtro.setId(new RegiaoPK(null, new Pais("brasil")));
 	}
 
 	@Entao("^são apresentados os registros correspondentes ao filtro pais informado$")

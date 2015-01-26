@@ -43,7 +43,7 @@ public class PaisFactory extends EntityFactory {
 		
 		Fixture.of(Pais.class).addTemplate(Template.BR.toString(), new Rule() {
 			{
-				add("nome", "·brasil");
+				add("nome", "brasil");
 				add("codigo", "BR");
 				add("continente", ams);
 				add("dataHoraInclusao", calendar);
@@ -54,7 +54,7 @@ public class PaisFactory extends EntityFactory {
 		
 		Fixture.of(Pais.class).addTemplate(Template.CHL.toString(), new Rule() {
 			{
-				add("nome", "¡Chile");
+				add("nome", "Chile");
 				add("codigo", "CHL");
 				add("continente", ams);
 				add("dataHoraInclusao", calendar);
@@ -65,7 +65,7 @@ public class PaisFactory extends EntityFactory {
 		
 		Fixture.of(Pais.class).addTemplate(Template.ITA.toString(), new Rule() {
 			{
-				add("nome", "·It·lia");
+				add("nome", "It·lia");
 				add("codigo", "ITA");
 				add("continente", eur);
 				add("dataHoraInclusao", calendar);

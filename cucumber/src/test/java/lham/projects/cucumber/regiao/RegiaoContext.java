@@ -18,7 +18,9 @@ public class RegiaoContext extends BaseIT {
 
 	protected Regiao filtro;
 	protected List<Regiao> lista;
+	protected Regiao regiao;
 	protected int regioesCadastradas = 0;
+	protected String mensagemErro;
 
 	private static ContinenteBD continenteBD;
 	private static ContinenteRN continenteRN;
@@ -64,7 +66,7 @@ public class RegiaoContext extends BaseIT {
 		paisRN.insert(pais);
 	}
 	
-	protected void cadastrarRegiao(RegiaoTemplateEnum template) {
+	protected void cadastrarRegiao(String template) {
         Regiao regiao = new RegiaoFactory().criarRegiao(template);
         regiaoRN.insert(regiao);
     }
@@ -75,16 +77,16 @@ public class RegiaoContext extends BaseIT {
 		this.cadastrarPais(PaisFactory.Template.BR, ams);
 		this.cadastrarPais(PaisFactory.Template.CHL, ams);	
 
-		this.cadastrarRegiao(RegiaoTemplateEnum.BR_SUL);
-		this.cadastrarRegiao(RegiaoTemplateEnum.BR_NORTE);
-		this.cadastrarRegiao(RegiaoTemplateEnum.BR_SUDESTE);
-		this.cadastrarRegiao(RegiaoTemplateEnum.BR_NORDESTE);
-		this.cadastrarRegiao(RegiaoTemplateEnum.BR_CENTRO_OESTE);		
+		this.cadastrarRegiao(RegiaoTemplateEnum.BR_SUL.toString());
+		this.cadastrarRegiao(RegiaoTemplateEnum.BR_NORTE.toString());
+		this.cadastrarRegiao(RegiaoTemplateEnum.BR_SUDESTE.toString());
+		this.cadastrarRegiao(RegiaoTemplateEnum.BR_NORDESTE.toString());
+		this.cadastrarRegiao(RegiaoTemplateEnum.BR_CENTRO_OESTE.toString());		
 
-		this.cadastrarRegiao(RegiaoTemplateEnum.CHL_SUL);
-		this.cadastrarRegiao(RegiaoTemplateEnum.CHL_NORTE);
-		this.cadastrarRegiao(RegiaoTemplateEnum.CHL_LESTE);
-		this.cadastrarRegiao(RegiaoTemplateEnum.CHL_OESTE);
+		this.cadastrarRegiao(RegiaoTemplateEnum.CHL_SUL.toString());
+		this.cadastrarRegiao(RegiaoTemplateEnum.CHL_NORTE.toString());
+		this.cadastrarRegiao(RegiaoTemplateEnum.CHL_LESTE.toString());
+		this.cadastrarRegiao(RegiaoTemplateEnum.CHL_OESTE.toString());
 		
 		regioesCadastradas = 9;
 	}

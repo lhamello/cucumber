@@ -8,9 +8,9 @@ import br.com.six2six.fixturefactory.Rule;
 
 public class RegiaoFactory extends EntityFactory {
 
-	public Regiao criarRegiao(RegiaoTemplateEnum template) {
+	public Regiao criarRegiao(String template) {
 		this.createTeamFixture();
-		return Fixture.from(Regiao.class).gimme(template.toString());
+		return Fixture.from(Regiao.class).gimme(template);
 	}
 
 	private void createTeamFixture() {
