@@ -34,7 +34,7 @@ public class RegiaoAlterarStepsDef extends RegiaoContext {
 	 * --------------------------------- Cenários
 	 */
 	@Dado("^que quero efetuar uma alteração nos campos de uma região \"(.*?)\"$")
-	public void queQueroEfetuarUmaAlteraçãoNosCamposDeUmaRegião(String template) throws Throwable {			
+	public void queQueroEfetuarUmaAlteracaoNosCamposDeUmaRegiao(String template) throws Throwable {			
 		Continente ams = this.cadastrarContinente("ams");
 		this.cadastrarPais(PaisFactory.Template.BR, ams);
 		chile = this.cadastrarPais(PaisFactory.Template.CHL, ams);	
@@ -44,14 +44,14 @@ public class RegiaoAlterarStepsDef extends RegiaoContext {
 	}
 	
 	@Dado("^preencho os campos nome e pais com os valores de uma região não cadastrada$")
-	public void preenchoOsCamposNomeEPaisComOsValoresDeUmaRegiãoNãoCadastrada() throws Throwable {
+	public void preenchoOsCamposNomeEPaisComOsValoresDeUmaRegiaoNaoCadastrada() throws Throwable {
 		regiao.setNomeRegiao("Sul2");
 		regiao.setPais(chile);
 		regiao.setArea(3000L);
 	}
 
 	@Quando("^eu efetuo a operação de alterar a região$")
-	public void euEfetuoAOperaçãoDeAlterarARegião() throws Throwable {
+	public void euEfetuoAOperacaoDeAlterarARegiao() throws Throwable {
 		try {
 			regiao = regiaoRN.update(regiao);
 		} catch (RNException e) {
@@ -67,7 +67,7 @@ public class RegiaoAlterarStepsDef extends RegiaoContext {
 	}
 	
 	@Dado("^preencho os campos nome e pais com os mesmos valores de outra região já cadastrada$")
-	public void preenchoOsCamposNomeEPaisComOsMesmosValoresDeOutraRegiãoJáCadastrada() throws Throwable {
+	public void preenchoOsCamposNomeEPaisComOsMesmosValoresDeOutraRegiaoJaCadastrada() throws Throwable {
 		regiao.setNomeRegiao("Leste");
 		regiao.setPais(chile);
 		regiao.setArea(3000L);
@@ -79,17 +79,17 @@ public class RegiaoAlterarStepsDef extends RegiaoContext {
 	}
 
 	@Dado("^não informo o campo nome$")
-	public void nãoInformoOCampoNome() throws Throwable {
+	public void naoInformoOCampoNome() throws Throwable {
 		regiao.setNomeRegiao(null);
 	}
 
 	@Dado("^não informo o campo pais$")
-	public void nãoInformoOCampoPais() throws Throwable {
+	public void naoInformoOCampoPais() throws Throwable {
 		regiao.setPais(null);
 	}
 
 	@Dado("^não informo o campo area$")
-	public void nãoInformoOCampoArea() throws Throwable {
+	public void naoInformoOCampoArea() throws Throwable {
 		regiao.setArea(null);
 	}	
 }
