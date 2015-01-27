@@ -37,7 +37,7 @@ public class RegiaoPesquisarStepsDef extends RegiaoContext {
 
 	@Dado("^eu preencho o filtro nome com um valor válido$")
 	public void euPreenchoOFiltroNomeComUmValorValido() throws Throwable {
-		filtro.setId(new RegiaoPK("Sul", null));
+		filtro.setNomeRegiao("Sul");
 	}
 
 	@Quando("^eu efetuo a pesquisa de regiões$")
@@ -50,19 +50,19 @@ public class RegiaoPesquisarStepsDef extends RegiaoContext {
 	public void sãoApresentadosOsRegistrosCorrespondentesAoFiltroNomeInformado() throws Throwable {
 		String[] regioesPesquisadas = new String[] {"Sul", "Sul"};
 		String mensagem = "São apresentados os registros correspondentes ao filtro nome informado";	
-		super.verificaLista(regioesPesquisadas, mensagem);
+		this.verificaLista(regioesPesquisadas, mensagem);
 	}
 
 	@Dado("^eu preencho o filtro pais com um valor válido$")
 	public void euPreenchoOFiltroPaisComUmValorValido() throws Throwable {
-		filtro.setId(new RegiaoPK(null, new Pais("brasil")));
+		filtro.setPais(new Pais("brasil"));
 	}
 
 	@Entao("^são apresentados os registros correspondentes ao filtro pais informado$")
 	public void sãoApresentadosOsRegistrosCorrespondentesAoFiltroPaisInformado() throws Throwable {
 		String[] regioesPesquisadas = new String[] {"centro-oeste", "Nordeste", "Norte", "sudeste", "Sul"};		
 		String mensagem = "São apresentados os registros correspondentes ao filtro pais informado";
-		super.verificaLista(regioesPesquisadas, mensagem);
+		this.verificaLista(regioesPesquisadas, mensagem);
 	}
 
 	@Dado("^eu preencho o filtro area com um valor válido$")
@@ -74,12 +74,12 @@ public class RegiaoPesquisarStepsDef extends RegiaoContext {
 	public void sãoApresentadosOsRegistrosCorrespondentesAoFiltroAreaInformado() throws Throwable {
 		String[] regioesPesquisadas = new String[] {"Leste", "Norte", "Oeste", "Sul"};		
 		String mensagem = "São apresentados os registros correspondentes ao filtro area informado";
-		super.verificaLista(regioesPesquisadas, mensagem);
+		this.verificaLista(regioesPesquisadas, mensagem);
 	}
 
 	@Dado("^eu preencho o filtro nome com um valor inválido$")
 	public void euPreenchoOFiltroNomeComUmValorInválido() throws Throwable {
-		filtro.setId(new RegiaoPK("XX", null));
+		filtro.setNomeRegiao("XX");
 	}
 
 	@Entao("^nenhum registro é retornado pela pesquisa$")
@@ -89,7 +89,7 @@ public class RegiaoPesquisarStepsDef extends RegiaoContext {
 
 	@Dado("^eu preencho o filtro pais com um valor inválido$")
 	public void euPreenchoOFiltroPaisComUmValorInválido() throws Throwable {
-		filtro.setId(new RegiaoPK(null, new Pais("XX")));
+		filtro.setPais(new Pais("XX"));
 	}
 
 	@Dado("^eu preencho o filtro area com um valor inválido$")
@@ -101,6 +101,19 @@ public class RegiaoPesquisarStepsDef extends RegiaoContext {
 	public void sãoApresentadosOsRegistrosCorrespondentesAoFiltroInformado() throws Throwable {
 		String[] regioesPesquisadas = new String[] {"Sul"};
 		String mensagem = "São apresentados os registros correspondentes ao filtro informado";	
-		super.verificaLista(regioesPesquisadas, mensagem);
+		this.verificaLista(regioesPesquisadas, mensagem);
+	}
+	
+
+	
+	private void verificaLista(String[] regioesEsperadas, String mensagem) throws Throwable {
+		assertEquals("Quantidade correta de registros", regioesEsperadas.length, lista.size());			
+		mensagem = mensagem + " (get(%s)).";	
+		
+		for (int i = 0; i < regioesEsperadas.length; i++) {
+			String esperado = regioesEsperadas[i].toUpperCase();
+			String retorno = lista.get(i).getNomeRegiao().toUpperCase();			
+			assertEquals(String.format(mensagem, i), esperado, retorno);
+		}
 	}
 }

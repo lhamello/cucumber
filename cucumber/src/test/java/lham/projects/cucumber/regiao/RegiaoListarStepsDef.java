@@ -1,5 +1,6 @@
 package lham.projects.cucumber.regiao;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -78,6 +79,19 @@ public class RegiaoListarStepsDef extends RegiaoContext {
 	public void devoReceberUmaListagemComOsRegistrosOrdenadosPorNomeDeFormaCrescente() throws Throwable {
 		String[] regioesOrdenadas = new String[] {"centro-oeste", "Leste", "Nordeste", "Norte", "Norte", "Oeste", "sudeste", "Sul", "Sul"};
 		String mensagem = "Devo receber uma listagem com os registros ordenados por nome de forma crescente";
-		super.verificaLista(regioesOrdenadas, mensagem);
+		this.verificaLista(regioesOrdenadas, mensagem);
+	}
+	
+
+	
+	private void verificaLista(String[] regioesEsperadas, String mensagem) throws Throwable {
+		assertEquals("Quantidade correta de registros", regioesEsperadas.length, lista.size());			
+		mensagem = mensagem + " (get(%s)).";	
+		
+		for (int i = 0; i < regioesEsperadas.length; i++) {
+			String esperado = regioesEsperadas[i].toUpperCase();
+			String retorno = lista.get(i).getNomeRegiao().toUpperCase();			
+			assertEquals(String.format(mensagem, i), esperado, retorno);
+		}
 	}
 }

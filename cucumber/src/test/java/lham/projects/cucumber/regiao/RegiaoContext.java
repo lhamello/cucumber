@@ -1,7 +1,5 @@
 package lham.projects.cucumber.regiao;
 
-import static org.junit.Assert.assertEquals;
-
 import java.util.List;
 
 import lham.projects.cucumber.continente.Continente;
@@ -19,6 +17,7 @@ public class RegiaoContext extends BaseIT {
 	protected Regiao filtro;
 	protected List<Regiao> lista;
 	protected Regiao regiao;
+	protected Regiao form;
 	protected int regioesCadastradas = 0;
 	protected String mensagemErro;
 
@@ -57,18 +56,25 @@ public class RegiaoContext extends BaseIT {
 	
 	protected Continente cadastrarContinente(String template) {
         Continente continente = new ContinenteFactory().criarContinente(template);
-        return continenteRN.insert(continente);
+//        Continente duplicado = continenteRN.consulta(continente.getNome());
+//        if (duplicado != null) {
+//        	continente = duplicado;
+//        } else {
+//        	continente = continenteRN.insert(continente);
+//        }
+        continente = continenteRN.insert(continente);
+        return continente;
     }
 	
-	protected void cadastrarPais(PaisFactory.Template template, Continente continente) {
+	protected Pais cadastrarPais(PaisFactory.Template template, Continente continente) {
 		Pais pais = new PaisFactory().criarPais(template);
 		pais.setContinente(continente);    	
-		paisRN.insert(pais);
+		return paisRN.insert(pais);
 	}
 	
-	protected void cadastrarRegiao(String template) {
+	protected Regiao cadastrarRegiao(String template) {
         Regiao regiao = new RegiaoFactory().criarRegiao(template);
-        regiaoRN.insert(regiao);
+        return regiaoRN.insert(regiao);
     }
 	
 	protected void cadastrarNoveRegioes() {
@@ -91,14 +97,20 @@ public class RegiaoContext extends BaseIT {
 		regioesCadastradas = 9;
 	}
 	
-	protected void verificaLista(String[] regioesEsperadas, String mensagem) throws Throwable {
-		assertEquals("Quantidade correta de registros", regioesEsperadas.length, lista.size());			
-		mensagem = mensagem + " (get(%s)).";	
-		
-		for (int i = 0; i < regioesEsperadas.length; i++) {
-			String esperado = regioesEsperadas[i].toUpperCase();
-			String retorno = lista.get(i).getId().getNomeRegiao().toUpperCase();			
-			assertEquals(String.format(mensagem, i), esperado, retorno);
-		}
+	protected Regiao consulta(String template) {
+		Regiao regiao = new RegiaoFactory().criarRegiao(template);
+		filtro = new Regiao();
+		filtro.setNomeRegiao(regiao.getNomeRegiao());
+		filtro.setPais(regiao.getPais());
+		lista = regiaoRN.find(filtro);
+		return lista.get(0);
+	}
+	
+	protected Regiao consulta(String nome, Pais pais) {
+		filtro = new Regiao();
+		filtro.setNomeRegiao(nome);
+		filtro.setPais(pais);
+		lista = regiaoRN.find(filtro);
+		return lista.get(0);
 	}
 }

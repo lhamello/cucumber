@@ -22,7 +22,8 @@ public class RegiaoFactory extends EntityFactory {
 		Fixture.of(Regiao.class).addTemplate(RegiaoTemplateEnum.BR_SUL.toString(),
 				new Rule() {
 					{
-						add("id", new RegiaoPK("Sul", brasil));
+						add("nomeRegiao", "Sul");
+						add("pais", brasil);
 						add("area", 2000L);
 						add("dataHoraInclusao", calendar);
 						add("ipUsuarioInclusao", random((Object[]) IP));
@@ -32,7 +33,8 @@ public class RegiaoFactory extends EntityFactory {
 		Fixture.of(Regiao.class).addTemplate(RegiaoTemplateEnum.BR_NORTE.toString(),
 				new Rule() {
 					{
-						add("id", new RegiaoPK("Norte", brasil));
+						add("nomeRegiao", "Norte");
+						add("pais", brasil);
 						add("area", 1000L);
 						add("dataHoraInclusao", calendar);
 						add("ipUsuarioInclusao", random((Object[]) IP));
@@ -42,7 +44,8 @@ public class RegiaoFactory extends EntityFactory {
 		Fixture.of(Regiao.class).addTemplate(RegiaoTemplateEnum.BR_SUDESTE.toString(),
 				new Rule() {
 					{
-						add("id", new RegiaoPK("sudeste", brasil));
+						add("nomeRegiao", "sudeste");
+						add("pais", brasil);
 						add("area", 1000L);
 						add("dataHoraInclusao", calendar);
 						add("ipUsuarioInclusao", random((Object[]) IP));
@@ -52,7 +55,8 @@ public class RegiaoFactory extends EntityFactory {
 		Fixture.of(Regiao.class).addTemplate(RegiaoTemplateEnum.BR_NORDESTE.toString(),
 				new Rule() {
 					{
-						add("id", new RegiaoPK("Nordeste", brasil));
+						add("nomeRegiao", "Nordeste");
+						add("pais", brasil);
 						add("area", 1000L);
 						add("dataHoraInclusao", calendar);
 						add("ipUsuarioInclusao", random((Object[]) IP));
@@ -62,7 +66,8 @@ public class RegiaoFactory extends EntityFactory {
 		Fixture.of(Regiao.class).addTemplate(RegiaoTemplateEnum.BR_CENTRO_OESTE.toString(),
 				new Rule() {
 					{
-						add("id", new RegiaoPK("centro-oeste", brasil));
+						add("nomeRegiao", "centro-oeste");
+						add("pais", brasil);
 						add("area", 1000L);
 						add("dataHoraInclusao", calendar);
 						add("ipUsuarioInclusao", random((Object[]) IP));
@@ -76,7 +81,8 @@ public class RegiaoFactory extends EntityFactory {
 		Fixture.of(Regiao.class).addTemplate(RegiaoTemplateEnum.CHL_SUL.toString(),
 				new Rule() {
 					{
-						add("id", new RegiaoPK("Sul", chile));
+						add("nomeRegiao", "Sul");
+						add("pais", chile);
 						add("area", 1000L);
 						add("dataHoraInclusao", calendar);
 						add("ipUsuarioInclusao", random((Object[]) IP));
@@ -86,7 +92,8 @@ public class RegiaoFactory extends EntityFactory {
 		Fixture.of(Regiao.class).addTemplate(RegiaoTemplateEnum.CHL_NORTE.toString(),
 				new Rule() {
 					{
-						add("id", new RegiaoPK("Norte", chile));
+						add("nomeRegiao", "Norte");
+						add("pais", chile);
 						add("area", 2000L);
 						add("dataHoraInclusao", calendar);
 						add("ipUsuarioInclusao", random((Object[]) IP));
@@ -96,7 +103,8 @@ public class RegiaoFactory extends EntityFactory {
 		Fixture.of(Regiao.class).addTemplate(RegiaoTemplateEnum.CHL_LESTE.toString(),
 				new Rule() {
 					{
-						add("id", new RegiaoPK("Leste", chile));
+						add("nomeRegiao", "Leste");
+						add("pais", chile);
 						add("area", 2000L);
 						add("dataHoraInclusao", calendar);
 						add("ipUsuarioInclusao", random((Object[]) IP));
@@ -106,7 +114,8 @@ public class RegiaoFactory extends EntityFactory {
 		Fixture.of(Regiao.class).addTemplate(RegiaoTemplateEnum.CHL_OESTE.toString(),
 				new Rule() {
 					{
-						add("id", new RegiaoPK("Oeste", chile));
+						add("nomeRegiao", "Oeste");
+						add("pais", chile);
 						add("area", 2000L);
 						add("dataHoraInclusao", calendar);
 						add("ipUsuarioInclusao", random((Object[]) IP));

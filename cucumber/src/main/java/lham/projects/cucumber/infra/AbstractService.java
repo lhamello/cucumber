@@ -5,6 +5,11 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
+
 /**
  * Base para as classes de serviço do sistema.
  * 
@@ -58,6 +63,18 @@ public abstract class AbstractService<E extends AbstractEntity<K>, K> implements
         return dao.insert(entity);
     }
 
+    /**
+     * Altera uma entidade no banco de dados.
+     * 
+     * @param entity
+     *            entidade que será alterada.
+     * 
+     * @return a entidade alterada.
+     */
+    public E update(final E entity) {
+        return dao.update(entity);
+    }
+
     public long count(final E entity) {
     	return dao.count(entity);
     }
@@ -71,5 +88,9 @@ public abstract class AbstractService<E extends AbstractEntity<K>, K> implements
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public void setDAO(final BaseDAO dao) {
         this.dao = dao;
+    }
+    
+    public E consulta(K pk) {    	
+    	return (E) dao.consulta(pk);
     }
 }

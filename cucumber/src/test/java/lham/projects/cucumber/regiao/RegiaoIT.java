@@ -11,7 +11,8 @@ import cucumber.api.junit.Cucumber;
 	features = { 
 			"src/test/resources/cucumber/regiao/RegiaoListar.feature",
 			"src/test/resources/cucumber/regiao/RegiaoPesquisar.feature",
-			"src/test/resources/cucumber/regiao/RegiaoInserir.feature"
+			"src/test/resources/cucumber/regiao/RegiaoInserir.feature",
+			"src/test/resources/cucumber/regiao/RegiaoAlterar.feature"
 			}, 
 	snippets = SnippetType.CAMELCASE
 	)

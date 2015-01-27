@@ -45,13 +45,14 @@ public class RegiaoInserirStepsDef extends RegiaoContext {
 			regiaoRN.insert(regiao);
 		} catch (RNException e) {
 			mensagemErro = e.getMessage();
-		}	    
+		}
 	}
 
 	@Entao("^a consulta pelos campos nome e pais deve retornar um registro$")
 	public void aConsultaPelosCamposNomeEPaisDeveRetornarUmRegistro() throws Throwable {
 	    filtro = new Regiao();
-	    filtro.setId(new RegiaoPK("Sul", new Pais("brasil")));
+	    filtro.setNomeRegiao("Sul");
+	    filtro.setPais(new Pais("brasil"));
 	    lista = regiaoRN.find(filtro);
 	    assertEquals("A  consulta pelos campos nome e pais deve retornar um registro", 1, lista.size());
 	}
@@ -65,7 +66,7 @@ public class RegiaoInserirStepsDef extends RegiaoContext {
 
 	@Dado("^não preencho o campo nome$")
 	public void naoPreenchoOCampoNome() throws Throwable {
-		regiao.getId().setNomeRegiao(null);
+		regiao.setNomeRegiao(null);
 	}
 
 	@Entao("^devo receber a mensagem \"(.*?)\"$")
@@ -75,7 +76,7 @@ public class RegiaoInserirStepsDef extends RegiaoContext {
 
 	@Dado("^não preencho o campo pais$")
 	public void naoPreenchoOCampoPais() throws Throwable {
-		regiao.getId().setPais(null);
+		regiao.setPais(null);
 	}
 
 	@Dado("^não preencho o campo area$")

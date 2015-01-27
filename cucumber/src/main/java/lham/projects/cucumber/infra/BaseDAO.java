@@ -14,6 +14,7 @@ import org.hibernate.criterion.Example;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 
 /**
  * Classe base para as classes DAO do sistema.
@@ -28,7 +29,7 @@ import org.hibernate.criterion.Projections;
 public class BaseDAO<E extends AbstractEntity<K>, K> {
 
     @PersistenceContext
-    private transient EntityManager entityManager;
+    protected transient EntityManager entityManager;
     private final transient Class<E> entityClass;
 
     /**
@@ -105,6 +106,21 @@ public class BaseDAO<E extends AbstractEntity<K>, K> {
     }
 
     /**
+     * Altera uma entidade no banco de dados.
+     * 
+     * @param entity
+     *            entidade que será alterada.
+     * 
+     * @return a entidade alterada.
+     */
+    public E update(final E entity) {
+        entityManager.merge(entity);
+        entityManager.flush();
+
+        return entity;
+    }
+
+    /**
      * Define o {@code entityManager} da aplicação.
      * 
      * @param entityManager
@@ -162,5 +178,11 @@ public class BaseDAO<E extends AbstractEntity<K>, K> {
         if (incluiuOrdem) {
         	detachedCriteria.addOrder(Order.asc(entityManager.unwrap(Session.class).getSessionFactory().getClassMetadata(entityClass).getIdentifierPropertyName())); 
         }
+    }
+    
+    public E consulta(K pk) {
+    	final Criteria crit = DetachedCriteria.forClass(entityClass).getExecutableCriteria(entityManager.unwrap(Session.class));
+    	crit.add(Restrictions.idEq(pk));
+    	return (E) crit.uniqueResult();
     }
 }

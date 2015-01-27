@@ -2,31 +2,48 @@ package lham.projects.cucumber.regiao;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
 import lham.projects.cucumber.infra.AbstractEntity;
+import lham.projects.cucumber.pais.Pais;
 
 @Entity
 @Table(name = "REGIAO")
 @NamedQueries(value = { @NamedQuery(name = "Regiao.findByPk", query = "SELECT r FROM Regiao r WHERE r.id = :pk") })
-public class Regiao extends AbstractEntity<RegiaoPK> {
+public class Regiao extends AbstractEntity<Long> {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private RegiaoPK id;
+	@SequenceGenerator(name = "Regiao_SEQ", sequenceName = "ID_REGIAO_SEQ", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Regiao_SEQ")
+	@Column(name = "ID_REGIAO")
+	private Long id;
 	
-	@Column(name="area", nullable=false)
-	private Long area;
+	@Column(name="NOME", nullable=false)	
+	private String nomeRegiao;
 
-	public RegiaoPK getId() {
+	@JoinColumn(name = "PAIS", nullable = false)
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Pais pais;
+	
+	@Column(name="AREA", nullable=false)
+	private Long area;
+	
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(RegiaoPK id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -38,44 +55,29 @@ public class Regiao extends AbstractEntity<RegiaoPK> {
 		this.area = area;
 	}
 
+	public String getNomeRegiao() {
+		return nomeRegiao;
+	}
+
+	public void setNomeRegiao(String nomeRegiao) {
+		this.nomeRegiao = nomeRegiao;
+	}
+
+	public Pais getPais() {
+		return pais;
+	}
+
+	public void setPais(Pais pais) {
+		this.pais = pais;
+	}
+
 	@Override
-	public RegiaoPK getPrimaryKey() {
+	public Long getPrimaryKey() {
 		return this.getId();
 	}
 
 	@Override
-	public void setPrimaryKey(RegiaoPK primaryKey) {
+	public void setPrimaryKey(Long primaryKey) {
 		this.setId(primaryKey);
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((area == null) ? 0 : area.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Regiao other = (Regiao) obj;
-		if (area == null) {
-			if (other.area != null)
-				return false;
-		} else if (!area.equals(other.area))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
 	}
 }
