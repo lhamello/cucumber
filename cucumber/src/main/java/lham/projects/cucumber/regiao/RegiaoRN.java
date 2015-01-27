@@ -34,18 +34,20 @@ public class RegiaoRN extends AbstractService<Regiao, Long> {
 		if (regiao.getNomeRegiao() == null
 				|| regiao.getPais() == null
 				|| regiao.getPais().getNome() == null
-				|| regiao.getArea() == null) {
+				|| regiao.getArea() == null
+				) {
 			throw new RNException("Campos obrigatórios não informados.");
 		}
 	}
 	
+	public Regiao consultarUnico(Regiao regiao) {		
+    	return regiaoBD.consultarUnico(regiao);
+	} 
+	
 	private void validarDuplicacao(Regiao regiao) {
-		Regiao filtro = new Regiao();
-		filtro.setNomeRegiao(regiao.getNomeRegiao());
-		filtro.setPais(regiao.getPais());
-		List<Regiao> lista = this.find(filtro);
+		Regiao regiaoDuplicada = this.consultarUnico(new Regiao(regiao.getNomeRegiao(), regiao.getPais()));
 		
-		if (!lista.isEmpty()) {
+		if (regiaoDuplicada != null) {
 			throw new RNException("Região já cadastrada.");
 		}
 	}

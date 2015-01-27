@@ -37,10 +37,9 @@ public class RegiaoAlterarStepsDef extends RegiaoContext {
 	public void queQueroEfetuarUmaAlteracaoNosCamposDeUmaRegiao(String template) throws Throwable {			
 		Continente ams = this.cadastrarContinente("ams");
 		this.cadastrarPais(PaisFactory.Template.BR, ams);
-		chile = this.cadastrarPais(PaisFactory.Template.CHL, ams);	
+		chile = this.cadastrarPais(PaisFactory.Template.CHL, ams);
 		
-		regiao = this.cadastrarRegiao(template);	
-		this.cadastrarRegiao(RegiaoTemplateEnum.CHL_LESTE.toString());
+		regiao = this.cadastrarRegiao(template);		
 	}
 	
 	@Dado("^preencho os campos nome e pais com os valores de uma região não cadastrada$")
@@ -68,6 +67,8 @@ public class RegiaoAlterarStepsDef extends RegiaoContext {
 	
 	@Dado("^preencho os campos nome e pais com os mesmos valores de outra região já cadastrada$")
 	public void preenchoOsCamposNomeEPaisComOsMesmosValoresDeOutraRegiaoJaCadastrada() throws Throwable {
+		//this.cadastrarRegiao(RegiaoTemplateEnum.CHL_LESTE.toString());
+		
 		regiao.setNomeRegiao("Leste");
 		regiao.setPais(chile);
 		regiao.setArea(3000L);

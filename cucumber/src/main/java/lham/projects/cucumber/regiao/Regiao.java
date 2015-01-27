@@ -12,6 +12,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
 import lham.projects.cucumber.infra.AbstractEntity;
 import lham.projects.cucumber.pais.Pais;
 
@@ -38,6 +39,18 @@ public class Regiao extends AbstractEntity<Long> {
 	@Column(name="AREA", nullable=false)
 	private Long area;
 	
+	
+
+	public Regiao() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Regiao(String nomeRegiao, Pais pais) {
+		super();
+		this.nomeRegiao = nomeRegiao;
+		this.pais = pais;
+	}
 
 	public Long getId() {
 		return id;

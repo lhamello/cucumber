@@ -26,7 +26,7 @@ public class RegiaoContext extends BaseIT {
 	private static ContinenteBD continenteBD;
 	private static ContinenteRN continenteRN;
 	private static PaisBD paisBD;
-	private static PaisRN paisRN;
+	protected static PaisRN paisRN;
 	protected static RegiaoBD regiaoBD;
 	protected static RegiaoRN regiaoRN;
 	
@@ -64,7 +64,6 @@ public class RegiaoContext extends BaseIT {
         } else {
         	continente = continenteRN.insert(continente);
         }
-        continente = continenteRN.insert(continente);
         return continente;
     }
 	
@@ -77,12 +76,18 @@ public class RegiaoContext extends BaseIT {
         	pais.setContinente(continente);
         	pais = paisRN.insert(pais);
         }		    	
-		return paisRN.insert(pais);
+		return pais;
 	}
 	
 	protected Regiao cadastrarRegiao(String template) {
         Regiao regiao = new RegiaoFactory().criarRegiao(template);
-        return regiaoRN.insert(regiao);
+        Regiao duplicado = regiaoRN.consultarUnico(regiao);
+        if (duplicado != null) {
+        	regiao = duplicado;
+        } else {
+        	regiao = regiaoRN.insert(regiao);
+        }		    
+        return regiao;
     }
 	
 	protected void cadastrarNoveRegioes() {

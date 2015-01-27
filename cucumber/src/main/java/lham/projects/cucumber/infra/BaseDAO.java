@@ -2,11 +2,9 @@ package lham.projects.cucumber.infra;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
@@ -180,8 +178,16 @@ public class BaseDAO<E extends AbstractEntity<K>, K> {
         }
     }
     
+    public DetachedCriteria criarCriterioDesatachado() {
+    	return DetachedCriteria.forClass(entityClass);
+    }
+    
+    public Criteria criarCriterio() {
+    	return this.criarCriterioDesatachado().getExecutableCriteria(entityManager.unwrap(Session.class));
+    }
+    
     public E consulta(K pk) {
-    	final Criteria crit = DetachedCriteria.forClass(entityClass).getExecutableCriteria(entityManager.unwrap(Session.class));
+    	final Criteria crit = this.criarCriterio();
     	crit.add(Restrictions.idEq(pk));
     	return (E) crit.uniqueResult();
     }

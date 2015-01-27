@@ -14,4 +14,4 @@ Funcionalidade: Excluir Regiões
   Cenario: Não deve excluir uma região com dependências
     Dado que quero excluir uma região com dependências "BR_SUL"
     Quando eu efetuo a exclusão da região
-    Entao eu devo receber a mensagem "Existem registros que referenciam esta região."
+    Entao eu devo receber a mensagem "Não foi possivel executar a exclusao. Existem estados cadastrados nesta região."

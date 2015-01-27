@@ -12,7 +12,8 @@ import cucumber.api.junit.Cucumber;
 			"src/test/resources/cucumber/regiao/RegiaoListar.feature",
 			"src/test/resources/cucumber/regiao/RegiaoPesquisar.feature",
 			"src/test/resources/cucumber/regiao/RegiaoInserir.feature",
-			"src/test/resources/cucumber/regiao/RegiaoAlterar.feature"
+			"src/test/resources/cucumber/regiao/RegiaoAlterar.feature",
+			"src/test/resources/cucumber/regiao/RegiaoExcluir.feature"
 			}, 
 	snippets = SnippetType.CAMELCASE
 	)
