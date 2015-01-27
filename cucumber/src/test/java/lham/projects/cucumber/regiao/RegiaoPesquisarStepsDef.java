@@ -10,8 +10,6 @@ import cucumber.api.java.pt.Entao;
 
 public class RegiaoPesquisarStepsDef extends RegiaoContext {
 
-	
-
 	/*
 	 * --------------------------------- Configuração
 	 */
@@ -102,18 +100,5 @@ public class RegiaoPesquisarStepsDef extends RegiaoContext {
 		String[] regioesPesquisadas = new String[] {"Sul"};
 		String mensagem = "São apresentados os registros correspondentes ao filtro informado";	
 		this.verificaLista(regioesPesquisadas, mensagem);
-	}
-	
-
-	
-	private void verificaLista(String[] regioesEsperadas, String mensagem) throws Throwable {
-		assertEquals("Quantidade correta de registros", regioesEsperadas.length, lista.size());			
-		mensagem = mensagem + " (get(%s)).";	
-		
-		for (int i = 0; i < regioesEsperadas.length; i++) {
-			String esperado = regioesEsperadas[i].toUpperCase();
-			String retorno = lista.get(i).getNomeRegiao().toUpperCase();			
-			assertEquals(String.format(mensagem, i), esperado, retorno);
-		}
 	}
 }

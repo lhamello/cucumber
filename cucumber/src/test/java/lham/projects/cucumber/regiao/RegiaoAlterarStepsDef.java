@@ -22,11 +22,7 @@ public class RegiaoAlterarStepsDef extends RegiaoContext {
 
 	@Before
 	public void initializeScenario() {
-		super.iniciarCenario();
-		
-		Continente ams = this.cadastrarContinente("ams");
-		this.cadastrarPais(PaisFactory.Template.BR, ams);
-		chile = this.cadastrarPais(PaisFactory.Template.CHL, ams);		
+		super.iniciarCenario();	
 	}
 
 	@After
@@ -38,7 +34,11 @@ public class RegiaoAlterarStepsDef extends RegiaoContext {
 	 * --------------------------------- Cenários
 	 */
 	@Dado("^que quero efetuar uma alteração nos campos de uma região \"(.*?)\"$")
-	public void queQueroEfetuarUmaAlteraçãoNosCamposDeUmaRegião(String template) throws Throwable {		
+	public void queQueroEfetuarUmaAlteraçãoNosCamposDeUmaRegião(String template) throws Throwable {			
+		Continente ams = this.cadastrarContinente("ams");
+		this.cadastrarPais(PaisFactory.Template.BR, ams);
+		chile = this.cadastrarPais(PaisFactory.Template.CHL, ams);	
+		
 		regiao = this.cadastrarRegiao(template);	
 		this.cadastrarRegiao(RegiaoTemplateEnum.CHL_LESTE.toString());
 	}
@@ -77,26 +77,19 @@ public class RegiaoAlterarStepsDef extends RegiaoContext {
 	public void euDevoReceberAMensagem(String mensagemEsperada) throws Throwable {
 		assertEquals("Eu devo receber a mensagem", mensagemEsperada, mensagemErro);
 	}
-	
-	@Dado("^que quero efetuar uma alteração inválida nos campos de uma região \"(.*?)\"$")
-	public void queQueroEfetuarUmaAlteraçãoInválidaNosCamposDeUmaRegião(String template) throws Throwable {
-		
-		regiao = this.cadastrarRegiao(template);	
-		this.cadastrarRegiao(RegiaoTemplateEnum.CHL_LESTE.toString());
-	}
 
-	@Dado("^não preencho o nome$")
-	public void nãoPreenchoONome() throws Throwable {
+	@Dado("^não informo o campo nome$")
+	public void nãoInformoOCampoNome() throws Throwable {
 		regiao.setNomeRegiao(null);
 	}
 
-	@Dado("^não preencho o pais$")
-	public void nãoPreenchoOPais() throws Throwable {
+	@Dado("^não informo o campo pais$")
+	public void nãoInformoOCampoPais() throws Throwable {
 		regiao.setPais(null);
 	}
 
-	@Dado("^não preencho o area$")
-	public void nãoPreenchoOArea() throws Throwable {
+	@Dado("^não informo o campo area$")
+	public void nãoInformoOCampoArea() throws Throwable {
 		regiao.setArea(null);
 	}	
 }

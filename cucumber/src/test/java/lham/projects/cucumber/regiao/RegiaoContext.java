@@ -1,5 +1,7 @@
 package lham.projects.cucumber.regiao;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.List;
 
 import lham.projects.cucumber.continente.Continente;
@@ -118,5 +120,16 @@ public class RegiaoContext extends BaseIT {
 		filtro.setPais(pais);
 		lista = regiaoRN.find(filtro);
 		return lista.get(0);
+	}
+	
+	protected void verificaLista(String[] regioesEsperadas, String mensagem) throws Throwable {
+		assertEquals("Quantidade correta de registros", regioesEsperadas.length, lista.size());			
+		mensagem = mensagem + " (get(%s)).";	
+		
+		for (int i = 0; i < regioesEsperadas.length; i++) {
+			String esperado = regioesEsperadas[i].toUpperCase();
+			String retorno = lista.get(i).getNomeRegiao().toUpperCase();			
+			assertEquals(String.format(mensagem, i), esperado, retorno);
+		}
 	}
 }
