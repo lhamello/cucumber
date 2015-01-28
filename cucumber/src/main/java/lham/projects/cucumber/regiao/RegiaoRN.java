@@ -36,17 +36,28 @@ public class RegiaoRN extends AbstractService<Regiao, Long> {
     	return regiaoBD.consultarUnico(regiao);
 	} 
 	
-	private void tratarObrigatoriedade(ConstraintViolationException e) {
+	private void tratarRestricaoObrigatoriedade(ConstraintViolationException e) {
 		if (e.getMessage().contains("NotNull")) {
+			e.printStackTrace();
 			throw new RNException("Campos obrigatórios não informados.");
 		} else {
 			throw e;
 		}
 	}
 	
-	private void tratarDuplicacao(PersistenceException e) {
+	private void tratarRestricaoDuplicacao(PersistenceException e) {
 		if (e.getCause().getCause().toString().contains("integrity constraint violation: unique constraint or index violation")) {
+			e.printStackTrace();
 			throw new RNException("Região já cadastrada.");
+		} else {
+			throw e;
+		}
+	}
+	
+	private void tratarRestricaoIntegridade(PersistenceException e) {
+		if (e.getCause().getCause().toString().contains("integrity constraint violation: foreign key no action")) {
+			e.printStackTrace();
+			throw new RNException("Não foi possivel executar a exclusão. Existem estados cadastrados nesta região.");
 		} else {
 			throw e;
 		}
@@ -55,11 +66,11 @@ public class RegiaoRN extends AbstractService<Regiao, Long> {
 	@Override
 	public Regiao incluir(Regiao regiao) {		
 		try {
-			regiao = regiaoBD.incluir(regiao);
+			regiao = super.incluir(regiao);
 		} catch (PersistenceException e) {
-			this.tratarDuplicacao(e);		
+			this.tratarRestricaoDuplicacao(e);		
 		} catch (ConstraintViolationException e) {
-			this.tratarObrigatoriedade(e);	
+			this.tratarRestricaoObrigatoriedade(e);	
 		}		
 		return regiao;
     } 
@@ -67,20 +78,21 @@ public class RegiaoRN extends AbstractService<Regiao, Long> {
 	@Override
 	public Regiao alterar(Regiao regiao) {
 		try {
-			regiao = regiaoBD.alterar(regiao);
+			regiao = super.alterar(regiao);
 		} catch (PersistenceException e) {
-			this.tratarDuplicacao(e);		
+			this.tratarRestricaoDuplicacao(e);		
 		} catch (ConstraintViolationException e) {
-			this.tratarObrigatoriedade(e);	
+			this.tratarRestricaoObrigatoriedade(e);	
 		}		
         return regiao;
     }
 
+	@Override
 	public void excluir(Regiao regiao) {
 		try {
-			regiaoBD.excluir(regiao);
-		} catch (Exception e) {
-			throw new RNException("Não foi possivel executar a exclusão. Existem estados cadastrados nesta região.");	
+			super.excluir(regiao);
+		} catch (PersistenceException e) {
+			this.tratarRestricaoIntegridade(e);
 		}
 	}
 }

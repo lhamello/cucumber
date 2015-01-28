@@ -74,6 +74,11 @@ public abstract class AbstractService<E extends AbstractEntity<K>, K> implements
     	return dao.contar(entity);
     }
     
+
+    public void excluir(final E entity) {
+        dao.excluir(entity);
+    }
+    
     /**
      * Define a classe <i>DAO</i> que será gerenciado pela classe de serviço.
      * 
