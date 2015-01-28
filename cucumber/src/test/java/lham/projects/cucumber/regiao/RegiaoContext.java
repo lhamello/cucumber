@@ -70,49 +70,27 @@ public class RegiaoContext extends BaseIT {
 	
 	protected Continente cadastrarContinente(String template) {
         Continente continente = new ContinenteFactory().criarContinente(template);
-        Continente duplicado = continenteRN.consultarChave(continente.getNome());
-        if (duplicado != null) {
-        	continente = duplicado;
-        } else {
-        	continente = continenteRN.incluir(continente);
-        }
+        continente = continenteRN.incluir(continente);
         return continente;
     }
 	
 	protected Pais cadastrarPais(PaisFactory.Template template, Continente continente) {
 		Pais pais = new PaisFactory().criarPais(template);
-		Pais duplicado = paisRN.consultarChave(pais.getNome());
-        if (duplicado != null) {
-        	pais = duplicado;
-        } else {
-        	pais.setContinente(continente);
-        	pais = paisRN.incluir(pais);
-        }		    	
+		//pais.setContinente(continente);
+        pais = paisRN.incluir(pais);
 		return pais;
 	}
 	
 	protected Regiao cadastrarRegiao(String template) {
         Regiao regiao = new RegiaoFactory().criarRegiao(template);
-        Regiao duplicado = regiaoRN.consultarUnico(regiao);
-        if (duplicado != null) {
-        	regiao = duplicado;
-        } else {
-        	regiao = regiaoRN.incluir(regiao);
-        }		    
+        regiao = regiaoRN.incluir(regiao);
         return regiao;
     }
 	
 	protected Estado cadastrarEstado(String template, Regiao regiao) {
 		Estado estado = new EstadoFactory().criarEstado(template);
-		Estado duplicado = estadoRN.consultarUnico(estado);
-        if (duplicado != null) {
-        	estado = duplicado;
-        } else {
-        	estado.setRegiao(regiao);
-        	estado = estadoRN.incluir(estado);
-        }
-		//estado.setRegiao(regiao);
-		//estado = estadoRN.incluir(estado);
+		estado.setRegiao(regiao);
+		estado = estadoRN.incluir(estado);
         return estado;
     }
 	
