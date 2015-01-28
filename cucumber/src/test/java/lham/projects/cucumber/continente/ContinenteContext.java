@@ -14,7 +14,7 @@ public class ContinenteContext extends BaseIT {
 	
 	protected void cadastrarContinente(String template) {
         Continente continente = new ContinenteFactory().criarContinente(template);
-        continenteRN.insert(continente);
+        continenteRN.incluir(continente);
     }
 
     private void prepararCenario() {

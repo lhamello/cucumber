@@ -47,8 +47,8 @@ public abstract class AbstractService<E extends AbstractEntity<K>, K> implements
      * @return lista contendo os registros que atendam os critérios pesquisados;
      *         ou uma lista vazia se nenhum registro for encontrado.
      */
-    public List<E> find(final E entity) {
-        return dao.find(entity);
+    public List<E> listar(final E entity) {
+        return dao.listar(entity);
     }
 
     /**
@@ -59,8 +59,8 @@ public abstract class AbstractService<E extends AbstractEntity<K>, K> implements
      * 
      * @return a entidade persistida.
      */
-    public E insert(final E entity) {
-        return dao.insert(entity);
+    public E incluir(final E entity) {
+        return dao.incluir(entity);
     }
 
     /**
@@ -71,12 +71,12 @@ public abstract class AbstractService<E extends AbstractEntity<K>, K> implements
      * 
      * @return a entidade alterada.
      */
-    public E update(final E entity) {
-        return dao.update(entity);
+    public E alterar(final E entity) {
+        return dao.alterar(entity);
     }
 
     public long count(final E entity) {
-    	return dao.count(entity);
+    	return dao.contar(entity);
     }
     
     /**
@@ -91,6 +91,6 @@ public abstract class AbstractService<E extends AbstractEntity<K>, K> implements
     }
     
     public E consulta(K pk) {    	
-    	return (E) dao.consulta(pk);
+    	return (E) dao.consultarChave(pk);
     }
 }

@@ -42,7 +42,7 @@ public class RegiaoInserirStepsDef extends RegiaoContext {
 	@Quando("^eu efetuo a operação de inserir a região$")
 	public void euEfetuoAOperacaoDeInserirARegiao() throws Throwable {
 		try {
-			regiaoRN.insert(regiao);
+			regiaoRN.incluir(regiao);
 		} catch (RNException e) {
 			mensagemErro = e.getMessage();
 		}
@@ -53,7 +53,7 @@ public class RegiaoInserirStepsDef extends RegiaoContext {
 	    filtro = new Regiao();
 	    filtro.setNomeRegiao("Sul");
 	    filtro.setPais(new Pais("brasil"));
-	    lista = regiaoRN.find(filtro);
+	    lista = regiaoRN.listar(filtro);
 	    assertEquals("A  consulta pelos campos nome e pais deve retornar um registro", 1, lista.size());
 	}
 

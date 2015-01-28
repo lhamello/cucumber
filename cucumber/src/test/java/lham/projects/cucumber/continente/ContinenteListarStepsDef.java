@@ -43,7 +43,7 @@ public class ContinenteListarStepsDef extends ContinenteContext {
 
 	@Quando("^acesso a listagem de continentes$")
 	public void acessoAListagemDeContinentes() throws Throwable {
-		resposta = continenteRN.find(filtro);
+		resposta = continenteRN.listar(filtro);
 	}
 
 	@Entao("^devo receber uma lista vazia como resposta$")
@@ -59,7 +59,7 @@ public class ContinenteListarStepsDef extends ContinenteContext {
 
 	@Dado("^nao passo filtro nenhum para a listagem$")
 	public void naoPassoFiltroNenhumParaAListagem() throws Throwable {
-		resposta = continenteRN.find(filtro);
+		resposta = continenteRN.listar(filtro);
 	}
 
 	@Entao("^devo receber uma pagina da listagem total$")
@@ -80,7 +80,7 @@ public class ContinenteListarStepsDef extends ContinenteContext {
 		filtro.getPropLista().addOrdem(ordem);
 		filtro.getPropLista().setTamanho(6);
 		
-		resposta = continenteRN.find(filtro);
+		resposta = continenteRN.listar(filtro);
 	}
 
 	@Entao("^devo receber uma listagem com os registros ordenados por nome de forma crescente$")

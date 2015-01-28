@@ -52,10 +52,10 @@ public class RegiaoAlterarStepsDef extends RegiaoContext {
 	@Quando("^eu efetuo a operação de alterar a região$")
 	public void euEfetuoAOperacaoDeAlterarARegiao() throws Throwable {
 		try {
-			regiao = regiaoRN.update(regiao);
+			regiao = regiaoRN.alterar(regiao);
 		} catch (RNException e) {
 			mensagemErro = e.getMessage();
-			entityManager.getTransaction().setRollbackOnly();
+			//entityManager.getTransaction().setRollbackOnly();
 		}
 	}
 

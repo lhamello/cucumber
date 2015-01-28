@@ -36,14 +36,14 @@ public class RegiaoListarStepsDef extends RegiaoContext {
 	@Quando("^eu acesso a listagem de regiões$")
 	public void euAcessoAListagemDeRegioes() throws Throwable {		
 		filtro = new Regiao();
-		lista = regiaoRN.find(filtro);
+		lista = regiaoRN.listar(filtro);
 	}
 
 	@Quando("^eu acesso a listagem de regiões sem paginação$")
 	public void euAcessoAListagemDeRegioesSemPaginacao() throws Throwable {		
 		filtro = new Regiao();
 		filtro.getPropLista().setTamanho(super.regioesCadastradas); 
-		lista = regiaoRN.find(filtro);
+		lista = regiaoRN.listar(filtro);
 	}
 
 	@Entao("^devo receber uma lista vazia como resposta$")
@@ -59,7 +59,7 @@ public class RegiaoListarStepsDef extends RegiaoContext {
 	@Dado("^não passo filtro nenhum para a listagem$")
 	public void naoPassoFiltroNenhumParaAListagem() throws Throwable {
 		filtro = new Regiao();
-		lista = regiaoRN.find(filtro);
+		lista = regiaoRN.listar(filtro);
 	}
 
 	@Entao("^devo receber uma página da listagem total$")

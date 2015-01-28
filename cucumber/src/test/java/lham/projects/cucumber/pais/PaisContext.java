@@ -39,7 +39,7 @@ public class PaisContext extends BaseIT {
     protected void cadastrarPais(PaisFactory.Template template, Continente continente) {
     	Pais pais = new PaisFactory().criarPais(template);
     	pais.setContinente(continente);    	
-        paisRN.insert(pais);
+        paisRN.incluir(pais);
     }
     
     public Continente getContinente() {
@@ -52,7 +52,7 @@ public class PaisContext extends BaseIT {
 	
 	protected Continente cadastrarContinente(String template) {
         Continente continente = new ContinenteFactory().criarContinente(template);
-        return continenteRN.insert(continente);
+        return continenteRN.incluir(continente);
     }
 
 

@@ -62,7 +62,7 @@ public class RegiaoContext extends BaseIT {
         if (duplicado != null) {
         	continente = duplicado;
         } else {
-        	continente = continenteRN.insert(continente);
+        	continente = continenteRN.incluir(continente);
         }
         return continente;
     }
@@ -74,7 +74,7 @@ public class RegiaoContext extends BaseIT {
         	pais = duplicado;
         } else {
         	pais.setContinente(continente);
-        	pais = paisRN.insert(pais);
+        	pais = paisRN.incluir(pais);
         }		    	
 		return pais;
 	}
@@ -85,7 +85,7 @@ public class RegiaoContext extends BaseIT {
         if (duplicado != null) {
         	regiao = duplicado;
         } else {
-        	regiao = regiaoRN.insert(regiao);
+        	regiao = regiaoRN.incluir(regiao);
         }		    
         return regiao;
     }

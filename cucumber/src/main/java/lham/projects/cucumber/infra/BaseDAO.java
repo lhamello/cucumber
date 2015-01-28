@@ -2,9 +2,13 @@ package lham.projects.cucumber.infra;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
+import lham.projects.cucumber.regiao.Regiao;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
@@ -39,7 +43,7 @@ public class BaseDAO<E extends AbstractEntity<K>, K> {
         this.entityClass = (Class<E>) superClass.getActualTypeArguments()[0];
     }    
     
-    public DetachedCriteria addRestrictions(DetachedCriteria detachedCriteria, final E entity) {
+    public DetachedCriteria adicionarRestricoes(DetachedCriteria detachedCriteria, final E entity) {
     	detachedCriteria.add(Example.create(entity).enableLike(MatchMode.ANYWHERE).ignoreCase());
     	return detachedCriteria;
     }    
@@ -56,12 +60,12 @@ public class BaseDAO<E extends AbstractEntity<K>, K> {
      *         critérios informados.
      */
     @SuppressWarnings("unchecked")
-    public List<E> find(final E entity) {
+    public List<E> listar(final E entity) {
         DetachedCriteria detachedCriteria = DetachedCriteria.forClass(entityClass);
         
-        detachedCriteria = this.addRestrictions(detachedCriteria, entity);
+        detachedCriteria = this.adicionarRestricoes(detachedCriteria, entity);
         
-        this.addOrder(entity, detachedCriteria);
+        this.adicionarOrdem(entity, detachedCriteria);
         
         final Criteria criteria = detachedCriteria.getExecutableCriteria(entityManager.unwrap(Session.class));
         criteria.setFirstResult(entity.getPropLista().getInicio());
@@ -79,8 +83,8 @@ public class BaseDAO<E extends AbstractEntity<K>, K> {
      * @return a entidade encontrada.
      */
     @SuppressWarnings("unchecked")
-    public E findyByPK(final K primaryKey) {
-        final String namedQuery = this.createNamedQuery("findById");
+    public E consultarPorNamedQuery(final K primaryKey) {
+        final String namedQuery = this.criarNamedQuery("findById");
 
         final Query query = entityManager.createNamedQuery(namedQuery);
         query.setParameter("pk", primaryKey);
@@ -96,7 +100,7 @@ public class BaseDAO<E extends AbstractEntity<K>, K> {
      * 
      * @return a entidade persistida.
      */
-    public E insert(final E entity) {
+    public E incluir(final E entity) {
         entityManager.persist(entity);
         entityManager.flush();
 
@@ -111,12 +115,19 @@ public class BaseDAO<E extends AbstractEntity<K>, K> {
      * 
      * @return a entidade alterada.
      */
-    public E update(final E entity) {
+    public E alterar(final E entity) {
         entityManager.merge(entity);
         entityManager.flush();
 
         return entity;
     }
+    
+
+
+	public void excluir(final E entity) {
+		entityManager.remove(entity);
+        entityManager.flush();
+	} 
 
     /**
      * Define o {@code entityManager} da aplicação.
@@ -128,7 +139,7 @@ public class BaseDAO<E extends AbstractEntity<K>, K> {
         this.entityManager = entityManager;
     }
     
-    public long count(final E entity) {
+    public long contar(final E entity) {
     	final DetachedCriteria detachedCriteria = DetachedCriteria.forClass(entityClass);
         detachedCriteria.add(Example.create(entity).enableLike(MatchMode.ANYWHERE).ignoreCase());
         
@@ -148,7 +159,7 @@ public class BaseDAO<E extends AbstractEntity<K>, K> {
      * @return a <i>named query</i> no formato: [nome da entidade].[sufixo da
      *         query].
      */
-    private String createNamedQuery(final String querySuffix) {
+    private String criarNamedQuery(final String querySuffix) {
         final StringBuilder namedQuery = new StringBuilder();
         namedQuery.append(entityClass.getSimpleName()).append(".").append(querySuffix);
 
@@ -156,7 +167,7 @@ public class BaseDAO<E extends AbstractEntity<K>, K> {
     }
     
     
-    public void addOrder(E entity, DetachedCriteria detachedCriteria) {
+    public void adicionarOrdem(E entity, DetachedCriteria detachedCriteria) {
         boolean incluiuOrdem = false;
     	final List<Ordem> ordenacao = entity.getPropLista().getOrdem();
     	
@@ -186,7 +197,7 @@ public class BaseDAO<E extends AbstractEntity<K>, K> {
     	return this.criarCriterioDesatachado().getExecutableCriteria(entityManager.unwrap(Session.class));
     }
     
-    public E consulta(K pk) {
+    public E consultarChave(K pk) {
     	final Criteria crit = this.criarCriterio();
     	crit.add(Restrictions.idEq(pk));
     	return (E) crit.uniqueResult();

@@ -41,7 +41,7 @@ public class RegiaoPesquisarStepsDef extends RegiaoContext {
 	@Quando("^eu efetuo a pesquisa de regiões$")
 	public void euEfetuoAPesquisaDeRegioes() throws Throwable {
 		filtro.getPropLista().setTamanho(super.regioesCadastradas); 
-	    lista = regiaoRN.find(filtro);
+	    lista = regiaoRN.listar(filtro);
 	}
 	
 	@Entao("^são apresentados os registros correspondentes ao filtro nome informado$")

@@ -24,8 +24,8 @@ public class PaisRN extends AbstractService<Pais, String> {
 	}
 	
 	@Override
-	public List<Pais> find(Pais entity) {
-		List<Pais> paises = super.find(entity);
+	public List<Pais> listar(Pais entity) {
+		List<Pais> paises = super.listar(entity);
 		Collections.sort(paises);
 		return paises;
 	}

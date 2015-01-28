@@ -9,7 +9,7 @@ import org.hibernate.criterion.Restrictions;
 public class RegiaoBD extends BaseDAO<Regiao, Long> {
 
 	@Override
-	public DetachedCriteria addRestrictions(DetachedCriteria dc, final Regiao filtro) {
+	public DetachedCriteria adicionarRestricoes(DetachedCriteria dc, final Regiao filtro) {
 		if (filtro.getNomeRegiao() != null) {
 			dc.add(Restrictions.eq("nomeRegiao", filtro.getNomeRegiao()));
 		}
@@ -32,5 +32,5 @@ public class RegiaoBD extends BaseDAO<Regiao, Long> {
 		crit.add(Restrictions.eq("nomeRegiao", regiao.getNomeRegiao()));
 		crit.add(Restrictions.eq("pa.nome", regiao.getPais().getNome()));
     	return (Regiao) crit.uniqueResult();
-	} 
+	}
 }

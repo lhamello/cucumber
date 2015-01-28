@@ -1,6 +1,7 @@
 package lham.projects.cucumber.regiao;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import lham.projects.cucumber.continente.Continente;
 import lham.projects.cucumber.infra.RNException;
@@ -35,26 +36,31 @@ public class RegiaoExcluirStepsDef extends RegiaoContext {
 	 */
 	
 	@Dado("^que quero excluir uma região sem dependências \"(.*?)\"$")
-	public void queQueroExcluirUmaRegiãoSemDependências(String arg1) throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	public void queQueroExcluirUmaRegiaoSemDependencias(String template) throws Throwable {
+	    this.cadastrarNoveRegioes();
+	    filtro = new RegiaoFactory().criarRegiao(template);
+	    regiao = regiaoRN.consultarUnico(filtro);
 	}
 
 	@Quando("^eu efetuo a exclusão da região$")
-	public void euEfetuoAExclusãoDaRegião() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	public void euEfetuoAExclusaoDaRegiao() throws Throwable {
+	    try {
+	    	regiaoRN.excluir(regiao);
+	    } catch (RNException e) {
+	    	mensagemErro = e.getMessage();
+	    }
 	}
 
 	@Entao("^a consulta pelos campos nome e pais não deve retornar dados$")
-	public void aConsultaPelosCamposNomeEPaisNãoDeveRetornarDados() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	public void aConsultaPelosCamposNomeEPaisNaoDeveRetornarDados() throws Throwable {
+		regiao = regiaoRN.consultarUnico(filtro);
+		assertNull("A consulta pelos campos nome e pais não deve retornar dados", regiao);		
 	}
 
 	@Dado("^que quero excluir uma região com dependências \"(.*?)\"$")
-	public void queQueroExcluirUmaRegiãoComDependências(String arg1) throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	public void queQueroExcluirUmaRegiaoComDependencias(String template) throws Throwable {
+		this.cadastrarNoveRegioes();
+	    filtro = new RegiaoFactory().criarRegiao(template);
+	    regiao = regiaoRN.consultarUnico(filtro);
 	}
 }
