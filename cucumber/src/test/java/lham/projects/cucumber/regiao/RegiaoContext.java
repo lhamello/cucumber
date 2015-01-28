@@ -110,23 +110,6 @@ public class RegiaoContext extends BaseIT {
 		regioesCadastradas = 9;
 	}
 	
-	protected Regiao consulta(String template) {
-		Regiao regiao = new RegiaoFactory().criarRegiao(template);
-		filtro = new Regiao();
-		filtro.setNomeRegiao(regiao.getNomeRegiao());
-		filtro.setPais(regiao.getPais());
-		lista = regiaoRN.find(filtro);
-		return lista.get(0);
-	}
-	
-	protected Regiao consulta(String nome, Pais pais) {
-		filtro = new Regiao();
-		filtro.setNomeRegiao(nome);
-		filtro.setPais(pais);
-		lista = regiaoRN.find(filtro);
-		return lista.get(0);
-	}
-	
 	protected void verificaLista(String[] regioesEsperadas, String mensagem) throws Throwable {
 		assertEquals("Quantidade correta de registros", regioesEsperadas.length, lista.size());			
 		mensagem = mensagem + " (get(%s)).";	

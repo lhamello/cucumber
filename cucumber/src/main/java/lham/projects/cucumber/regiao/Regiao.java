@@ -12,12 +12,14 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
 
 import lham.projects.cucumber.infra.AbstractEntity;
 import lham.projects.cucumber.pais.Pais;
 
 @Entity
-@Table(name = "REGIAO")
+@Table(name = "REGIAO", uniqueConstraints = @UniqueConstraint(name = "REGIAO_UC", columnNames = {"NOME", "PAIS"}))
 @NamedQueries(value = { @NamedQuery(name = "Regiao.findByPk", query = "SELECT r FROM Regiao r WHERE r.id = :pk") })
 public class Regiao extends AbstractEntity<Long> {
 
@@ -29,21 +31,23 @@ public class Regiao extends AbstractEntity<Long> {
 	@Column(name = "ID_REGIAO")
 	private Long id;
 	
-	@Column(name="NOME", nullable=false)	
+	@Column(name="NOME")
+	@NotNull
 	private String nomeRegiao;
 
-	@JoinColumn(name = "PAIS", nullable = false)
+	@JoinColumn(name = "PAIS")
 	@ManyToOne(fetch = FetchType.LAZY)
+	@NotNull
 	private Pais pais;
 	
-	@Column(name="AREA", nullable=false)
+	@Column(name="AREA")
+	@NotNull
 	private Long area;
 	
 	
 
 	public Regiao() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Regiao(String nomeRegiao, Pais pais) {

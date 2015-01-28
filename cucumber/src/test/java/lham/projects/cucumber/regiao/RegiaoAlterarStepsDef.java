@@ -61,13 +61,13 @@ public class RegiaoAlterarStepsDef extends RegiaoContext {
 
 	@Entao("^a consulta pelos campos nome e pais deve retornar um registro com os dados de entrada$")
 	public void aConsultaPelosCamposNomeEPaisDeveRetornarUmRegistroComOsDadosDeEntrada() throws Throwable {
-		regiao = this.consulta("Sul2", chile);
+		regiao = regiaoRN.consultarUnico(new Regiao("Sul2", chile));
 		assertTrue("A consulta pelos campos nome e pais deve conter os dados de entrada do campo area", 3000L == regiao.getArea());
 	}
 	
 	@Dado("^preencho os campos nome e pais com os mesmos valores de outra região já cadastrada$")
 	public void preenchoOsCamposNomeEPaisComOsMesmosValoresDeOutraRegiaoJaCadastrada() throws Throwable {
-		//this.cadastrarRegiao(RegiaoTemplateEnum.CHL_LESTE.toString());
+		this.cadastrarRegiao(RegiaoTemplateEnum.CHL_LESTE.toString());
 		
 		regiao.setNomeRegiao("Leste");
 		regiao.setPais(chile);
