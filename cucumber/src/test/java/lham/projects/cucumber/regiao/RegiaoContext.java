@@ -58,7 +58,7 @@ public class RegiaoContext extends BaseIT {
 	
 	protected Continente cadastrarContinente(String template) {
         Continente continente = new ContinenteFactory().criarContinente(template);
-        Continente duplicado = continenteRN.consulta(continente.getNome());
+        Continente duplicado = continenteRN.consultarChave(continente.getNome());
         if (duplicado != null) {
         	continente = duplicado;
         } else {
@@ -69,7 +69,7 @@ public class RegiaoContext extends BaseIT {
 	
 	protected Pais cadastrarPais(PaisFactory.Template template, Continente continente) {
 		Pais pais = new PaisFactory().criarPais(template);
-		Pais duplicado = paisRN.consulta(pais.getNome());
+		Pais duplicado = paisRN.consultarChave(pais.getNome());
         if (duplicado != null) {
         	pais = duplicado;
         } else {

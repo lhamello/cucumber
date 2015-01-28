@@ -70,7 +70,7 @@ public class RegiaoListarStepsDef extends RegiaoContext {
 
 	@Entao("^o numero total de regiões cadastrados$")
 	public void oNumeroTotalDeRegioesCadastrados() throws Throwable {
-		long tamTotal = regiaoRN.count(filtro);
+		long tamTotal = regiaoRN.contar(filtro);
 		assertTrue("Devo receber uma pagina da listagem total.", tamTotal == super.regioesCadastradas);
 	}
 

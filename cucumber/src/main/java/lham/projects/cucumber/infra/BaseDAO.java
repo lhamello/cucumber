@@ -7,8 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import lham.projects.cucumber.regiao.Regiao;
-
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
@@ -196,7 +194,7 @@ public class BaseDAO<E extends AbstractEntity<K>, K> {
     public Criteria criarCriterio() {
     	return this.criarCriterioDesatachado().getExecutableCriteria(entityManager.unwrap(Session.class));
     }
-    
+
     public E consultarChave(K pk) {
     	final Criteria crit = this.criarCriterio();
     	crit.add(Restrictions.idEq(pk));

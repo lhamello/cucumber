@@ -5,11 +5,6 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Restrictions;
-
 /**
  * Base para as classes de serviço do sistema.
  * 
@@ -75,7 +70,7 @@ public abstract class AbstractService<E extends AbstractEntity<K>, K> implements
         return dao.alterar(entity);
     }
 
-    public long count(final E entity) {
+    public long contar(final E entity) {
     	return dao.contar(entity);
     }
     
@@ -90,7 +85,7 @@ public abstract class AbstractService<E extends AbstractEntity<K>, K> implements
         this.dao = dao;
     }
     
-    public E consulta(K pk) {    	
+    public E consultarChave(K pk) {    	
     	return (E) dao.consultarChave(pk);
     }
 }

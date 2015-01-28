@@ -1,13 +1,7 @@
 package lham.projects.cucumber.regiao;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import lham.projects.cucumber.continente.Continente;
 import lham.projects.cucumber.infra.RNException;
-import lham.projects.cucumber.pais.Pais;
-import lham.projects.cucumber.pais.PaisFactory;
-import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.es.Dado;

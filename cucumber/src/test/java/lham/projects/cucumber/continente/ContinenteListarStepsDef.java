@@ -70,7 +70,7 @@ public class ContinenteListarStepsDef extends ContinenteContext {
 
 	@Entao("^o numero total de continentes cadastrados$")
 	public void oNumeroTotalDeContinentesCadastrados() throws Throwable {
-		long tamTotal = continenteRN.count(filtro);
+		long tamTotal = continenteRN.contar(filtro);
 		assertTrue("Devo receber uma pagina da listagem total.", tamTotal == continentesCadastrados);
 	}
 	
