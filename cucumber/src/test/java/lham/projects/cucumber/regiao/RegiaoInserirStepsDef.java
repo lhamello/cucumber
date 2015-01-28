@@ -1,6 +1,7 @@
 package lham.projects.cucumber.regiao;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import lham.projects.cucumber.continente.Continente;
 import lham.projects.cucumber.infra.RNException;
 import lham.projects.cucumber.pais.Pais;
@@ -41,7 +42,7 @@ public class RegiaoInserirStepsDef extends RegiaoContext {
 
 	@Quando("^eu efetuo a operação de inserir a região$")
 	public void euEfetuoAOperacaoDeInserirARegiao() throws Throwable {
-		try {
+		try {			
 			regiaoRN.incluir(regiao);
 		} catch (RNException e) {
 			mensagemErro = e.getMessage();
@@ -50,11 +51,8 @@ public class RegiaoInserirStepsDef extends RegiaoContext {
 
 	@Entao("^a consulta pelos campos nome e pais deve retornar um registro$")
 	public void aConsultaPelosCamposNomeEPaisDeveRetornarUmRegistro() throws Throwable {
-	    filtro = new Regiao();
-	    filtro.setNomeRegiao("Sul");
-	    filtro.setPais(new Pais("brasil"));
-	    lista = regiaoRN.listar(filtro);
-	    assertEquals("A  consulta pelos campos nome e pais deve retornar um registro", 1, lista.size());
+	    regiao = regiaoRN.consultarUnico(new Regiao("Sul", new Pais("brasil")));
+	    assertNotNull("A  consulta pelos campos nome e pais deve retornar um registro", regiao);
 	}
 
 	@Dado("^que quero efetuar o cadastro de um nova região \"(.*?)\"$")

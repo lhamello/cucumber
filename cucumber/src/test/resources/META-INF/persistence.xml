@@ -6,6 +6,7 @@
 		<class>lham.projects.cucumber.continente.Continente</class>
 		<class>lham.projects.cucumber.pais.Pais</class>
 		<class>lham.projects.cucumber.regiao.Regiao</class>
+		<class>lham.projects.cucumber.estado.Estado</class>
 		
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />

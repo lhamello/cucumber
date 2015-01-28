@@ -1,5 +1,6 @@
 package lham.projects.cucumber.regiao;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import lham.projects.cucumber.infra.RNException;
 import cucumber.api.java.After;
@@ -53,8 +54,14 @@ public class RegiaoExcluirStepsDef extends RegiaoContext {
 
 	@Dado("^que quero excluir uma região com dependências \"(.*?)\"$")
 	public void queQueroExcluirUmaRegiaoComDependencias(String template) throws Throwable {
-		this.cadastrarNoveRegioes();
+		this.cadastrarNoveRegioes();		
 	    filtro = new RegiaoFactory().criarRegiao(template);
 	    regiao = regiaoRN.consultarUnico(filtro);
+	    this.cadastrarEstado("BR_SUL_RS", regiao);
+	}
+
+	@Entao("^eu devo receber a seguinte mensagem \"(.*?)\"$")
+	public void euDevoReceberASeguinteMensagem(String mensagemEsperada) throws Throwable {
+		assertEquals("Eu devo receber a seguinte mensagem", mensagemEsperada, mensagemErro);
 	}
 }

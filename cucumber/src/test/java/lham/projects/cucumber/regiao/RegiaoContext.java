@@ -8,6 +8,10 @@ import lham.projects.cucumber.continente.Continente;
 import lham.projects.cucumber.continente.ContinenteBD;
 import lham.projects.cucumber.continente.ContinenteFactory;
 import lham.projects.cucumber.continente.ContinenteRN;
+import lham.projects.cucumber.estado.Estado;
+import lham.projects.cucumber.estado.EstadoBD;
+import lham.projects.cucumber.estado.EstadoFactory;
+import lham.projects.cucumber.estado.EstadoRN;
 import lham.projects.cucumber.pais.Pais;
 import lham.projects.cucumber.pais.PaisBD;
 import lham.projects.cucumber.pais.PaisFactory;
@@ -29,6 +33,8 @@ public class RegiaoContext extends BaseIT {
 	protected static PaisRN paisRN;
 	protected static RegiaoBD regiaoBD;
 	protected static RegiaoRN regiaoRN;
+	private static EstadoBD estadoBD;
+	private static EstadoRN estadoRN;
 	
 	protected final void iniciarCenario() {
         super.startConnection();
@@ -54,6 +60,12 @@ public class RegiaoContext extends BaseIT {
     	regiaoRN = new RegiaoRN();
     	regiaoRN.setRegiaoBD(regiaoBD);
     	regiaoRN.setDAO(regiaoBD);
+    	
+    	estadoBD = new EstadoBD();
+    	estadoBD.setEntityManager(entityManager);
+    	estadoRN = new EstadoRN();
+    	estadoRN.setEstadoBD(estadoBD);
+    	estadoRN.setDAO(estadoBD);
     } 
 	
 	protected Continente cadastrarContinente(String template) {
@@ -90,6 +102,20 @@ public class RegiaoContext extends BaseIT {
         return regiao;
     }
 	
+	protected Estado cadastrarEstado(String template, Regiao regiao) {
+		Estado estado = new EstadoFactory().criarEstado(template);
+		Estado duplicado = estadoRN.consultarUnico(estado);
+        if (duplicado != null) {
+        	estado = duplicado;
+        } else {
+        	estado.setRegiao(regiao);
+        	estado = estadoRN.incluir(estado);
+        }
+		//estado.setRegiao(regiao);
+		//estado = estadoRN.incluir(estado);
+        return estado;
+    }
+	
 	protected void cadastrarNoveRegioes() {
 		Continente ams = this.cadastrarContinente("ams");
 		
@@ -105,7 +131,7 @@ public class RegiaoContext extends BaseIT {
 		this.cadastrarRegiao(RegiaoTemplateEnum.CHL_SUL.toString());
 		this.cadastrarRegiao(RegiaoTemplateEnum.CHL_NORTE.toString());
 		this.cadastrarRegiao(RegiaoTemplateEnum.CHL_LESTE.toString());
-		this.cadastrarRegiao(RegiaoTemplateEnum.CHL_OESTE.toString());
+		this.cadastrarRegiao(RegiaoTemplateEnum.CHL_OESTE.toString());	
 		
 		regioesCadastradas = 9;
 	}

@@ -80,7 +80,7 @@ public class RegiaoRN extends AbstractService<Regiao, Long> {
 		try {
 			regiaoBD.excluir(regiao);
 		} catch (Exception e) {
-			throw new RNException("Não foi possivel executar a exclusao. Existem estados cadastrados nesta região.");	
+			throw new RNException("Não foi possivel executar a exclusão. Existem estados cadastrados nesta região.");	
 		}
 	}
 }
