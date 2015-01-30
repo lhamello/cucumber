@@ -7,19 +7,23 @@ import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 
 public class RegiaoFactory extends EntityFactory {
+	
+	public static enum Template {
+		BR_SUL, BR_NORTE, BR_SUDESTE, BR_NORDESTE, BR_CENTRO_OESTE, 
+		CHL_SUL, CHL_NORTE, CHL_LESTE, CHL_OESTE;
+	}
 
-	public Regiao criarRegiao(String template) {
-		this.createTeamFixture();
+	public static Regiao criar(String template) {
+		RegiaoFactory.createTeamFixture();
 		return Fixture.from(Regiao.class).gimme(template);
 	}
 
-	private void createTeamFixture() {
-		PaisFactory paisFactory = new PaisFactory();
+	private static void createTeamFixture() {
 		
-		final Pais brasil = paisFactory.criarPais(PaisFactory.Template.BR);		
-		final Pais chile = paisFactory.criarPais(PaisFactory.Template.CHL);
+		final Pais brasil = PaisFactory.criarPais(PaisFactory.Template.BR.name());		
+		final Pais chile = PaisFactory.criarPais(PaisFactory.Template.CHL.name());
 		
-		Fixture.of(Regiao.class).addTemplate(RegiaoTemplateEnum.BR_SUL.toString(),
+		Fixture.of(Regiao.class).addTemplate(RegiaoFactory.Template.BR_SUL.name(),
 				new Rule() {
 					{
 						add("nomeRegiao", "Sul");
@@ -30,7 +34,7 @@ public class RegiaoFactory extends EntityFactory {
 						add("usuarioInclusao", regex("\\d{10}"));
 					}
 				});
-		Fixture.of(Regiao.class).addTemplate(RegiaoTemplateEnum.BR_NORTE.toString(),
+		Fixture.of(Regiao.class).addTemplate(RegiaoFactory.Template.BR_NORTE.name(),
 				new Rule() {
 					{
 						add("nomeRegiao", "Norte");
@@ -41,7 +45,7 @@ public class RegiaoFactory extends EntityFactory {
 						add("usuarioInclusao", regex("\\d{10}"));
 					}
 				});
-		Fixture.of(Regiao.class).addTemplate(RegiaoTemplateEnum.BR_SUDESTE.toString(),
+		Fixture.of(Regiao.class).addTemplate(RegiaoFactory.Template.BR_SUDESTE.name(),
 				new Rule() {
 					{
 						add("nomeRegiao", "sudeste");
@@ -52,7 +56,7 @@ public class RegiaoFactory extends EntityFactory {
 						add("usuarioInclusao", regex("\\d{10}"));
 					}
 				});
-		Fixture.of(Regiao.class).addTemplate(RegiaoTemplateEnum.BR_NORDESTE.toString(),
+		Fixture.of(Regiao.class).addTemplate(RegiaoFactory.Template.BR_NORDESTE.name(),
 				new Rule() {
 					{
 						add("nomeRegiao", "Nordeste");
@@ -63,7 +67,7 @@ public class RegiaoFactory extends EntityFactory {
 						add("usuarioInclusao", regex("\\d{10}"));
 					}
 				});
-		Fixture.of(Regiao.class).addTemplate(RegiaoTemplateEnum.BR_CENTRO_OESTE.toString(),
+		Fixture.of(Regiao.class).addTemplate(RegiaoFactory.Template.BR_CENTRO_OESTE.name(),
 				new Rule() {
 					{
 						add("nomeRegiao", "centro-oeste");
@@ -78,7 +82,7 @@ public class RegiaoFactory extends EntityFactory {
 		
 
 		
-		Fixture.of(Regiao.class).addTemplate(RegiaoTemplateEnum.CHL_SUL.toString(),
+		Fixture.of(Regiao.class).addTemplate(RegiaoFactory.Template.CHL_SUL.name(),
 				new Rule() {
 					{
 						add("nomeRegiao", "Sul");
@@ -89,7 +93,7 @@ public class RegiaoFactory extends EntityFactory {
 						add("usuarioInclusao", regex("\\d{10}"));
 					}
 				});
-		Fixture.of(Regiao.class).addTemplate(RegiaoTemplateEnum.CHL_NORTE.toString(),
+		Fixture.of(Regiao.class).addTemplate(RegiaoFactory.Template.CHL_NORTE.name(),
 				new Rule() {
 					{
 						add("nomeRegiao", "Norte");
@@ -100,7 +104,7 @@ public class RegiaoFactory extends EntityFactory {
 						add("usuarioInclusao", regex("\\d{10}"));
 					}
 				});
-		Fixture.of(Regiao.class).addTemplate(RegiaoTemplateEnum.CHL_LESTE.toString(),
+		Fixture.of(Regiao.class).addTemplate(RegiaoFactory.Template.CHL_LESTE.name(),
 				new Rule() {
 					{
 						add("nomeRegiao", "Leste");
@@ -111,7 +115,7 @@ public class RegiaoFactory extends EntityFactory {
 						add("usuarioInclusao", regex("\\d{10}"));
 					}
 				});
-		Fixture.of(Regiao.class).addTemplate(RegiaoTemplateEnum.CHL_OESTE.toString(),
+		Fixture.of(Regiao.class).addTemplate(RegiaoFactory.Template.CHL_OESTE.name(),
 				new Rule() {
 					{
 						add("nomeRegiao", "Oeste");

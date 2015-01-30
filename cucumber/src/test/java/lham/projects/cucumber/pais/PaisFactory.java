@@ -8,40 +8,20 @@ import br.com.six2six.fixturefactory.Rule;
 
 public class PaisFactory extends EntityFactory {
 	
-	static public enum Template { 
-		BR("BR"), CHL("CHL"), ITA("ITA"); 
-		
-		public String valor; 
-		
-		public String getValor() {
-			return valor;
-		}
-
-		public void setValor(String valor) {
-			this.valor = valor;
-		}
-
-		Template(String valor)	{
-			setValor(valor); 
-		} 
-		
-		@Override
-		public String toString() {
-			return this.getValor();
-		}
+	public static enum Template { 
+		BR, CHL, ITA;
 	}
 	
-	public Pais criarPais(Template template) { 
-		this.createTeamFixture();
-		return Fixture.from(Pais.class).gimme(template.getValor());
+	public static Pais criarPais(String template) { 
+		PaisFactory.createTeamFixture();
+		return Fixture.from(Pais.class).gimme(template);
 	}
 	
-	private void createTeamFixture() {
-		ContinenteFactory continenteFactory = new ContinenteFactory();
-		final Continente ams = continenteFactory.criarContinente("ams");
-		final Continente eur = continenteFactory.criarContinente("eur");
+	private static void createTeamFixture() {
+		final Continente ams = ContinenteFactory.criarContinente(ContinenteFactory.Template.AMS.name());
+		final Continente eur = ContinenteFactory.criarContinente(ContinenteFactory.Template.EUR.name());
 		
-		Fixture.of(Pais.class).addTemplate(Template.BR.toString(), new Rule() {
+		Fixture.of(Pais.class).addTemplate(Template.BR.name(), new Rule() {
 			{
 				add("nome", "brasil");
 				add("codigo", "BR");
@@ -52,7 +32,7 @@ public class PaisFactory extends EntityFactory {
 			}
 		});
 		
-		Fixture.of(Pais.class).addTemplate(Template.CHL.toString(), new Rule() {
+		Fixture.of(Pais.class).addTemplate(Template.CHL.name(), new Rule() {
 			{
 				add("nome", "Chile");
 				add("codigo", "CHL");
@@ -63,7 +43,7 @@ public class PaisFactory extends EntityFactory {
 			}
 		});
 		
-		Fixture.of(Pais.class).addTemplate(Template.ITA.toString(), new Rule() {
+		Fixture.of(Pais.class).addTemplate(Template.ITA.name(), new Rule() {
 			{
 				add("nome", "Itália");
 				add("codigo", "ITA");

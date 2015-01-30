@@ -26,7 +26,7 @@ public class EstadoContext extends BaseIT {
     } 
 	
 	public Estado incluir(String template, Regiao regiao) {
-		Estado estado = new EstadoFactory().criarEstado(template);
+		Estado estado = EstadoFactory.criarEstado(template);
 		estado.setRegiao(regiao);
 		estado = estadoRN.incluir(estado);
         return estado;

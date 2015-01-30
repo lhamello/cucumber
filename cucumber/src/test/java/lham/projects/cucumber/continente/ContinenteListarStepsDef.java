@@ -2,9 +2,6 @@ package lham.projects.cucumber.continente;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
-import java.util.List;
-
 import lham.projects.cucumber.infra.Ordem;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -13,10 +10,6 @@ import cucumber.api.java.pt.Entao;
 import cucumber.api.java.pt.Quando;
 
 public class ContinenteListarStepsDef extends ContinenteContext {
-
-	private Continente filtro;
-	private long continentesCadastrados;
-	private List<Continente> resposta;
 	
 	/*
 	 * --------------------------------- Configuração
@@ -100,20 +93,5 @@ public class ContinenteListarStepsDef extends ContinenteContext {
 			assertEquals(msgTeste.toString(), esperado, atual);	
 			indice++;
 		}
-	}
-
-	/*
-	 * --------------------------------- métodos privados
-	 */
-
-	private void cadastrarContinentes() {
-		continentesCadastrados = 6;
-
-		super.cadastrarContinente("oce");
-		super.cadastrarContinente("afr");
-		super.cadastrarContinente("ams");
-		super.cadastrarContinente("eur");
-		super.cadastrarContinente("amn");
-		super.cadastrarContinente("asi");
 	}
 }

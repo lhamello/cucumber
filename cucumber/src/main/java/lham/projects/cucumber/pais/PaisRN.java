@@ -5,11 +5,11 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import lham.projects.cucumber.pais.PaisBD;
-import lham.projects.cucumber.continente.Continente;
 import lham.projects.cucumber.infra.AbstractService;
 
 public class PaisRN extends AbstractService<Pais, String> {
+
+	private static final long serialVersionUID = 1L;
 
 	@Inject 
 	private PaisBD paisBD;

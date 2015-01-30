@@ -31,8 +31,8 @@ public class PaisContext extends BaseIT {
     	this.carrearRN();
     } 
 	
-	public Pais incluir(PaisFactory.Template template) {
-		Pais pais = new PaisFactory().criarPais(template);
+	public Pais incluir(String template) {
+		Pais pais = PaisFactory.criarPais(template);
 		//pais.setContinente(continente);
         pais = paisRN.incluir(pais);
 		return pais;

@@ -5,14 +5,18 @@ import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 
 public class ContinenteFactory extends EntityFactory {
+	
+	public static enum Template {
+		AMS, AMN, AFR, ASI, EUR, OCE
+	}
 
-	public Continente criarContinente(String template) {
-		this.createTeamFixture();
+	public static Continente criarContinente(String template) {
+		ContinenteFactory.createTeamFixture();
 		return Fixture.from(Continente.class).gimme(template);
 	}
 
-	private void createTeamFixture() {
-		Fixture.of(Continente.class).addTemplate("ams", new Rule() {
+	private static void createTeamFixture() {
+		Fixture.of(Continente.class).addTemplate(ContinenteFactory.Template.AMS.name(), new Rule() {
 			{
 				add("nome", "America do Sul");
 				add("codigo", "AMS");
@@ -21,46 +25,46 @@ public class ContinenteFactory extends EntityFactory {
 				add("usuarioInclusao", regex("\\d{10}"));
 			}
 		});
-		Fixture.of(Continente.class).addTemplate("amn", new Rule() {
+		Fixture.of(Continente.class).addTemplate(ContinenteFactory.Template.AMN.name(), new Rule() {
 			{
 				add("nome", "america do norte");
-				add("codigo", "AMN ");
+				add("codigo", "AMN");
 				add("dataHoraInclusao", calendar);
 				add("ipUsuarioInclusao", random((Object[]) IP));
 				add("usuarioInclusao", regex("\\d{10}"));
 			}
 		});
-		Fixture.of(Continente.class).addTemplate("afr", new Rule() {
+		Fixture.of(Continente.class).addTemplate(ContinenteFactory.Template.AFR.name(), new Rule() {
 			{
 				add("nome", "africa");
-				add("codigo", "AFR ");
+				add("codigo", "AFR");
 				add("dataHoraInclusao", calendar);
 				add("ipUsuarioInclusao", random((Object[]) IP));
 				add("usuarioInclusao", regex("\\d{10}"));
 			}
 		});
-		Fixture.of(Continente.class).addTemplate("asi", new Rule() {
+		Fixture.of(Continente.class).addTemplate(ContinenteFactory.Template.ASI.name(), new Rule() {
 			{
 				add("nome", "ASIA");
-				add("codigo", "ASI ");
+				add("codigo", "ASI");
 				add("dataHoraInclusao", calendar);
 				add("ipUsuarioInclusao", random((Object[]) IP));
 				add("usuarioInclusao", regex("\\d{10}"));
 			}
 		});
-		Fixture.of(Continente.class).addTemplate("eur", new Rule() {
+		Fixture.of(Continente.class).addTemplate(ContinenteFactory.Template.EUR.name(), new Rule() {
 			{
 				add("nome", "Europa");
-				add("codigo", "EUR ");
+				add("codigo", "EUR");
 				add("dataHoraInclusao", calendar);
 				add("ipUsuarioInclusao", random((Object[]) IP));
 				add("usuarioInclusao", regex("\\d{10}"));
 			}
 		});
-		Fixture.of(Continente.class).addTemplate("oce", new Rule() {
+		Fixture.of(Continente.class).addTemplate(ContinenteFactory.Template.OCE.name(), new Rule() {
 			{
 				add("nome", "Oceania");
-				add("codigo", "OCE ");
+				add("codigo", "OCE");
 				add("dataHoraInclusao", calendar);
 				add("ipUsuarioInclusao", random((Object[]) IP));
 				add("usuarioInclusao", regex("\\d{10}"));

@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.List;
 
 import lham.projects.cucumber.continente.ContinenteContext;
+import lham.projects.cucumber.continente.ContinenteFactory;
 import lham.projects.cucumber.estado.EstadoContext;
 import lham.projects.cucumber.pais.PaisContext;
 import lham.projects.cucumber.pais.PaisFactory;
@@ -52,27 +53,27 @@ public class RegiaoContext extends BaseIT {
     }
 	
 	protected Regiao incluir(String template) {
-        Regiao regiao = new RegiaoFactory().criarRegiao(template);
+        Regiao regiao = RegiaoFactory.criar(template);
         regiao = regiaoRN.incluir(regiao);
         return regiao;
     }
 	
 	protected void incluirNoveRegioes() {
-		continenteContext.cadastrarContinente("ams");
+		continenteContext.cadastrarContinente(ContinenteFactory.Template.AMS.name());
 		
-		paisContext.incluir(PaisFactory.Template.BR);
-		paisContext.incluir(PaisFactory.Template.CHL);	
+		paisContext.incluir(PaisFactory.Template.BR.name());
+		paisContext.incluir(PaisFactory.Template.CHL.name());	
 
-		this.incluir(RegiaoTemplateEnum.BR_SUL.toString());
-		this.incluir(RegiaoTemplateEnum.BR_NORTE.toString());
-		this.incluir(RegiaoTemplateEnum.BR_SUDESTE.toString());
-		this.incluir(RegiaoTemplateEnum.BR_NORDESTE.toString());
-		this.incluir(RegiaoTemplateEnum.BR_CENTRO_OESTE.toString());		
+		this.incluir(RegiaoFactory.Template.BR_SUL.toString());
+		this.incluir(RegiaoFactory.Template.BR_NORTE.toString());
+		this.incluir(RegiaoFactory.Template.BR_SUDESTE.toString());
+		this.incluir(RegiaoFactory.Template.BR_NORDESTE.toString());
+		this.incluir(RegiaoFactory.Template.BR_CENTRO_OESTE.toString());		
 
-		this.incluir(RegiaoTemplateEnum.CHL_SUL.toString());
-		this.incluir(RegiaoTemplateEnum.CHL_NORTE.toString());
-		this.incluir(RegiaoTemplateEnum.CHL_LESTE.toString());
-		this.incluir(RegiaoTemplateEnum.CHL_OESTE.toString());	
+		this.incluir(RegiaoFactory.Template.CHL_SUL.toString());
+		this.incluir(RegiaoFactory.Template.CHL_NORTE.toString());
+		this.incluir(RegiaoFactory.Template.CHL_LESTE.toString());
+		this.incluir(RegiaoFactory.Template.CHL_OESTE.toString());	
 		
 		regioesCadastradas = 9;
 	}
