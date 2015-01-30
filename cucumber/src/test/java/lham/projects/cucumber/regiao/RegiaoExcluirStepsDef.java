@@ -57,7 +57,7 @@ public class RegiaoExcluirStepsDef extends RegiaoContext {
 		this.cadastrarNoveRegioes();		
 	    filtro = new RegiaoFactory().criarRegiao(template);
 	    regiao = regiaoRN.consultarUnico(filtro);
-	    this.cadastrarEstado("BR_SUL_RS", regiao);
+	    estadoContext.cadastrarEstado("BR_SUL_RS", regiao);
 	}
 
 	@Entao("^eu devo receber a seguinte mensagem \"(.*?)\"$")

@@ -12,17 +12,22 @@ public class ContinenteContext extends BaseIT {
         this.prepararCenario();
     }
 	
-	protected void cadastrarContinente(String template) {
+	public Continente cadastrarContinente(String template) {
         Continente continente = new ContinenteFactory().criarContinente(template);
         continenteRN.incluir(continente);
+        return continente;
     }
 
-    private void prepararCenario() {
+    public void carregarRN() {
     	continenteBD = new ContinenteBD();
     	continenteBD.setEntityManager(entityManager);
 
     	continenteRN = new ContinenteRN();
     	continenteRN.setContinenteBD(continenteBD);
     	continenteRN.setDAO(continenteBD);
+    }
+
+    protected void prepararCenario() {
+    	this.carregarRN();
     }
 }

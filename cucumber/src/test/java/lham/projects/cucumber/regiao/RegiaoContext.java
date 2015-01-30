@@ -5,13 +5,8 @@ import static org.junit.Assert.assertEquals;
 import java.util.List;
 
 import lham.projects.cucumber.continente.Continente;
-import lham.projects.cucumber.continente.ContinenteBD;
-import lham.projects.cucumber.continente.ContinenteFactory;
-import lham.projects.cucumber.continente.ContinenteRN;
-import lham.projects.cucumber.estado.Estado;
-import lham.projects.cucumber.estado.EstadoBD;
-import lham.projects.cucumber.estado.EstadoFactory;
-import lham.projects.cucumber.estado.EstadoRN;
+import lham.projects.cucumber.continente.ContinenteContext;
+import lham.projects.cucumber.estado.EstadoContext;
 import lham.projects.cucumber.pais.Pais;
 import lham.projects.cucumber.pais.PaisBD;
 import lham.projects.cucumber.pais.PaisFactory;
@@ -27,14 +22,12 @@ public class RegiaoContext extends BaseIT {
 	protected int regioesCadastradas = 0;
 	protected String mensagemErro;
 
-	private static ContinenteBD continenteBD;
-	private static ContinenteRN continenteRN;
+	protected static ContinenteContext continenteContext;
 	private static PaisBD paisBD;
 	protected static PaisRN paisRN;
 	protected static RegiaoBD regiaoBD;
 	protected static RegiaoRN regiaoRN;
-	private static EstadoBD estadoBD;
-	private static EstadoRN estadoRN;
+	protected static EstadoContext estadoContext;
 	
 	protected final void iniciarCenario() {
         super.startConnection();
@@ -43,11 +36,8 @@ public class RegiaoContext extends BaseIT {
 
     private void prepararCenario() {    	
     	
-    	continenteBD = new ContinenteBD();
-    	continenteBD.setEntityManager(entityManager);
-    	continenteRN = new ContinenteRN();
-    	continenteRN.setContinenteBD(continenteBD);
-    	continenteRN.setDAO(continenteBD);   	
+    	continenteContext = new ContinenteContext();
+    	continenteContext.carregarRN();
     	
     	paisBD = new PaisBD();
     	paisBD.setEntityManager(entityManager);
@@ -61,18 +51,9 @@ public class RegiaoContext extends BaseIT {
     	regiaoRN.setRegiaoBD(regiaoBD);
     	regiaoRN.setDAO(regiaoBD);
     	
-    	estadoBD = new EstadoBD();
-    	estadoBD.setEntityManager(entityManager);
-    	estadoRN = new EstadoRN();
-    	estadoRN.setEstadoBD(estadoBD);
-    	estadoRN.setDAO(estadoBD);
+    	estadoContext = new EstadoContext();
+    	estadoContext.carregarRN();
     } 
-	
-	protected Continente cadastrarContinente(String template) {
-        Continente continente = new ContinenteFactory().criarContinente(template);
-        continente = continenteRN.incluir(continente);
-        return continente;
-    }
 	
 	protected Pais cadastrarPais(PaisFactory.Template template, Continente continente) {
 		Pais pais = new PaisFactory().criarPais(template);
@@ -87,15 +68,8 @@ public class RegiaoContext extends BaseIT {
         return regiao;
     }
 	
-	protected Estado cadastrarEstado(String template, Regiao regiao) {
-		Estado estado = new EstadoFactory().criarEstado(template);
-		estado.setRegiao(regiao);
-		estado = estadoRN.incluir(estado);
-        return estado;
-    }
-	
 	protected void cadastrarNoveRegioes() {
-		Continente ams = this.cadastrarContinente("ams");
+		Continente ams = continenteContext.cadastrarContinente("ams");
 		
 		this.cadastrarPais(PaisFactory.Template.BR, ams);
 		this.cadastrarPais(PaisFactory.Template.CHL, ams);	

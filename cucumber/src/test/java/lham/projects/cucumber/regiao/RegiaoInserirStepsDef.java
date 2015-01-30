@@ -35,7 +35,7 @@ public class RegiaoInserirStepsDef extends RegiaoContext {
 	 */
 	@Dado("^que quero efetuar o cadastro de uma nova região \"(.*?)\"$")
 	public void queQueroEfetuarOCadastroDeUmaNovaRegiao(String template) throws Throwable {
-		Continente ams = this.cadastrarContinente("ams");		
+		Continente ams = continenteContext.cadastrarContinente("ams");		
 		this.cadastrarPais(PaisFactory.Template.BR, ams);
 	    regiao = new RegiaoFactory().criarRegiao(template);
 	}
@@ -57,7 +57,7 @@ public class RegiaoInserirStepsDef extends RegiaoContext {
 
 	@Dado("^que quero efetuar o cadastro de um nova região \"(.*?)\"$")
 	public void queQueroEfetuarOCadastroDeUmNovaRegiao(String template) throws Throwable {
-		Continente ams = super.cadastrarContinente("ams");		
+		Continente ams = continenteContext.cadastrarContinente("ams");		
 		super.cadastrarPais(PaisFactory.Template.BR, ams);
 	    regiao = new RegiaoFactory().criarRegiao(template);
 	}
