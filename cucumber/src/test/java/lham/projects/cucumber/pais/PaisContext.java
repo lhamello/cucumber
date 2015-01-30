@@ -1,7 +1,10 @@
 package lham.projects.cucumber.pais;
 
+import java.util.List;
+
 import lham.projects.cucumber.continente.Continente;
 import lham.projects.cucumber.continente.ContinenteContext;
+import lham.projects.cucumber.continente.ContinenteFactory;
 import lham.projects.cucumber.test.BaseIT;
 
 public class PaisContext extends BaseIT {
@@ -10,6 +13,10 @@ public class PaisContext extends BaseIT {
 	private static PaisBD paisBD;
 	protected static PaisRN paisRN;
 	private Continente continente;	
+	
+	protected Pais filtro; 
+	protected List<Pais> resposta;
+	protected long paisesCadastrados;
 	 
 	protected final void iniciarCenario() {
         super.startConnection();
@@ -44,5 +51,14 @@ public class PaisContext extends BaseIT {
 
 	public void setContinente(Continente continente) {
 		this.continente = continente;
+	}
+
+	protected void cadastrarPaises() {
+		paisesCadastrados = 2;
+		
+		continenteContext.cadastrarContinente(ContinenteFactory.Template.AMS.name());
+
+		this.incluir(PaisFactory.Template.CHL.name());
+		this.incluir(PaisFactory.Template.BR.name());
 	}
 }

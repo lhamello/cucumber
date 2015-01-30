@@ -1,10 +1,6 @@
 package lham.projects.cucumber.pais;
 
 import static org.junit.Assert.assertTrue;
-
-import java.util.List;
-
-import lham.projects.cucumber.continente.ContinenteFactory;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.pt.Dado;
@@ -12,10 +8,6 @@ import cucumber.api.java.pt.Entao;
 import cucumber.api.java.pt.Quando;
 
 public class PaisListarStepsDef extends PaisContext{
-	
-	private Pais filtro; 
-	private List<Pais> resposta;
-	private long paisesCadastrados;
 
 	/*
 	 * --------------------------------- Configuração
@@ -70,18 +62,5 @@ public class PaisListarStepsDef extends PaisContext{
 				resposta.get(0).getCodigo().equals("BR"));
 		assertTrue("Devo receber uma listagem com os registros ordenados por nome de forma crescente.", 
 				resposta.get(1).getCodigo().equals("CHL"));
-	}
-
-	/*
-	 * --------------------------------- métodos privados
-	 */
-
-	private void cadastrarPaises() {
-		paisesCadastrados = 2;
-		
-		continenteContext.cadastrarContinente(ContinenteFactory.Template.AMS.name());
-
-		super.incluir(PaisFactory.Template.CHL.name());
-		super.incluir(PaisFactory.Template.BR.name());
 	}
 }
