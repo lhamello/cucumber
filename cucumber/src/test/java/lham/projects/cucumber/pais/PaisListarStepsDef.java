@@ -4,7 +4,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import lham.projects.cucumber.continente.Continente;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.pt.Dado;
@@ -79,9 +78,9 @@ public class PaisListarStepsDef extends PaisContext{
 	private void cadastrarPaises() {
 		paisesCadastrados = 2;
 		
-		Continente ams = super.cadastrarContinente("ams");
+		continenteContext.cadastrarContinente("ams");
 
-		super.cadastrarPais(PaisFactory.Template.CHL, ams);
-		super.cadastrarPais(PaisFactory.Template.BR, ams);
+		super.incluir(PaisFactory.Template.CHL);
+		super.incluir(PaisFactory.Template.BR);
 	}
 }

@@ -32,7 +32,7 @@ public class RegiaoExcluirStepsDef extends RegiaoContext {
 	
 	@Dado("^que quero excluir uma região sem dependências \"(.*?)\"$")
 	public void queQueroExcluirUmaRegiaoSemDependencias(String template) throws Throwable {
-	    this.cadastrarNoveRegioes();
+	    this.incluirNoveRegioes();
 	    filtro = new RegiaoFactory().criarRegiao(template);
 	    regiao = regiaoRN.consultarUnico(filtro);
 	}
@@ -54,10 +54,10 @@ public class RegiaoExcluirStepsDef extends RegiaoContext {
 
 	@Dado("^que quero excluir uma região com dependências \"(.*?)\"$")
 	public void queQueroExcluirUmaRegiaoComDependencias(String template) throws Throwable {
-		this.cadastrarNoveRegioes();		
+		this.incluirNoveRegioes();		
 	    filtro = new RegiaoFactory().criarRegiao(template);
 	    regiao = regiaoRN.consultarUnico(filtro);
-	    estadoContext.cadastrarEstado("BR_SUL_RS", regiao);
+	    estadoContext.incluir("BR_SUL_RS", regiao);
 	}
 
 	@Entao("^eu devo receber a seguinte mensagem \"(.*?)\"$")

@@ -2,7 +2,6 @@ package lham.projects.cucumber.regiao;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import lham.projects.cucumber.continente.Continente;
 import lham.projects.cucumber.infra.RNException;
 import lham.projects.cucumber.pais.Pais;
 import lham.projects.cucumber.pais.PaisFactory;
@@ -35,11 +34,11 @@ public class RegiaoAlterarStepsDef extends RegiaoContext {
 	 */
 	@Dado("^que quero efetuar uma alteração nos campos de uma região \"(.*?)\"$")
 	public void queQueroEfetuarUmaAlteracaoNosCamposDeUmaRegiao(String template) throws Throwable {			
-		Continente ams = continenteContext.cadastrarContinente("ams");
-		this.cadastrarPais(PaisFactory.Template.BR, ams);
-		chile = this.cadastrarPais(PaisFactory.Template.CHL, ams);
+		continenteContext.cadastrarContinente("ams");
+		paisContext.incluir(PaisFactory.Template.BR);
+		chile = paisContext.incluir(PaisFactory.Template.CHL);
 		
-		regiao = this.cadastrarRegiao(template);		
+		regiao = this.incluir(template);		
 	}
 	
 	@Dado("^preencho os campos nome e pais com os valores de uma região não cadastrada$")
@@ -67,7 +66,7 @@ public class RegiaoAlterarStepsDef extends RegiaoContext {
 	
 	@Dado("^preencho os campos nome e pais com os mesmos valores de outra região já cadastrada$")
 	public void preenchoOsCamposNomeEPaisComOsMesmosValoresDeOutraRegiaoJaCadastrada() throws Throwable {
-		this.cadastrarRegiao(RegiaoTemplateEnum.CHL_LESTE.toString());
+		this.incluir(RegiaoTemplateEnum.CHL_LESTE.toString());
 		
 		regiao.setNomeRegiao("Leste");
 		regiao.setPais(chile);

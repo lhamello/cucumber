@@ -53,7 +53,7 @@ public class RegiaoListarStepsDef extends RegiaoContext {
 	
 	@Dado("^que existam registros cadastrados no banco$")
 	public void queExistamRegistrosCadastradosNoBanco() throws Throwable {
-	    super.cadastrarNoveRegioes();
+	    super.incluirNoveRegioes();
 	}
 
 	@Dado("^não passo filtro nenhum para a listagem$")

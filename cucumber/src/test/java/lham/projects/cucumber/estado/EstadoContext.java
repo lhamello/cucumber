@@ -4,6 +4,7 @@ import lham.projects.cucumber.regiao.Regiao;
 import lham.projects.cucumber.test.BaseIT;
 
 public class EstadoContext extends BaseIT {
+	
 	private static EstadoBD estadoBD;
 	private static EstadoRN estadoRN;
 	
@@ -24,7 +25,7 @@ public class EstadoContext extends BaseIT {
     	this.carregarRN();
     } 
 	
-	public Estado cadastrarEstado(String template, Regiao regiao) {
+	public Estado incluir(String template, Regiao regiao) {
 		Estado estado = new EstadoFactory().criarEstado(template);
 		estado.setRegiao(regiao);
 		estado = estadoRN.incluir(estado);

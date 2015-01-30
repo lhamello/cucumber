@@ -4,7 +4,7 @@ import lham.projects.cucumber.test.BaseIT;
 
 public class ContinenteContext extends BaseIT {
 	
-	protected static ContinenteBD continenteBD;
+	private static ContinenteBD continenteBD;
 	protected static ContinenteRN continenteRN;
 	
 	protected final void iniciarCenario() {
@@ -27,7 +27,7 @@ public class ContinenteContext extends BaseIT {
     	continenteRN.setDAO(continenteBD);
     }
 
-    protected void prepararCenario() {
+    private void prepararCenario() {
     	this.carregarRN();
     }
 }

@@ -29,7 +29,7 @@ public class RegiaoPesquisarStepsDef extends RegiaoContext {
 	 */
 	@Dado("^que existam regiões cadastradas$")
 	public void queExistamRegioesCadastradas() throws Throwable {
-		super.cadastrarNoveRegioes();
+		super.incluirNoveRegioes();
 		filtro = new Regiao();
 	}
 

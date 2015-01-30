@@ -2,7 +2,6 @@ package lham.projects.cucumber.regiao;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import lham.projects.cucumber.continente.Continente;
 import lham.projects.cucumber.infra.RNException;
 import lham.projects.cucumber.pais.Pais;
 import lham.projects.cucumber.pais.PaisFactory;
@@ -35,8 +34,8 @@ public class RegiaoInserirStepsDef extends RegiaoContext {
 	 */
 	@Dado("^que quero efetuar o cadastro de uma nova região \"(.*?)\"$")
 	public void queQueroEfetuarOCadastroDeUmaNovaRegiao(String template) throws Throwable {
-		Continente ams = continenteContext.cadastrarContinente("ams");		
-		this.cadastrarPais(PaisFactory.Template.BR, ams);
+		continenteContext.cadastrarContinente("ams");		
+		paisContext.incluir(PaisFactory.Template.BR);
 	    regiao = new RegiaoFactory().criarRegiao(template);
 	}
 
@@ -57,8 +56,8 @@ public class RegiaoInserirStepsDef extends RegiaoContext {
 
 	@Dado("^que quero efetuar o cadastro de um nova região \"(.*?)\"$")
 	public void queQueroEfetuarOCadastroDeUmNovaRegiao(String template) throws Throwable {
-		Continente ams = continenteContext.cadastrarContinente("ams");		
-		super.cadastrarPais(PaisFactory.Template.BR, ams);
+		continenteContext.cadastrarContinente("ams");		
+		paisContext.incluir(PaisFactory.Template.BR);
 	    regiao = new RegiaoFactory().criarRegiao(template);
 	}
 
@@ -84,6 +83,6 @@ public class RegiaoInserirStepsDef extends RegiaoContext {
 
 	@Dado("^esta região \"(.*?)\" já esta cadastrada$")
 	public void estaRegiaoJaEstaCadastrada(String arg1) throws Throwable {
-	    super.cadastrarRegiao(RegiaoTemplateEnum.BR_SUL.toString());
+	    super.incluir(RegiaoTemplateEnum.BR_SUL.toString());
 	}	
 }
