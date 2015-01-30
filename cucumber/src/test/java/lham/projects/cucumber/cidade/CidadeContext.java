@@ -6,12 +6,11 @@ public class CidadeContext extends BaseIT {
 
 	protected static CidadeRN cidadeRN;
 
-	protected final void iniciarCenario() {
-		super.startConnection();
-		this.prepararCenario();
-	}
-
-	private void prepararCenario() {
-		cidadeRN = CidadeRNFactory.criarCidadeRN(entityManager);
-	}
+	protected void prepararCenario() {
+		this.carregarRN();
+	} 
+	
+    public void carregarRN() {    	
+    	cidadeRN = CidadeRNFactory.criarCidadeRN(entityManager);
+    }
 }

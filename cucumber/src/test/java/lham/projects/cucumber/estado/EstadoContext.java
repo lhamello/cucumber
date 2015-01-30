@@ -7,11 +7,6 @@ public class EstadoContext extends BaseIT {
 	
 	private static EstadoBD estadoBD;
 	private static EstadoRN estadoRN;
-	
-	protected final void iniciarCenario() {
-        super.startConnection();
-        this.prepararCenario();
-    }
 
 	public void carregarRN() {        	
     	estadoBD = new EstadoBD();
@@ -21,7 +16,7 @@ public class EstadoContext extends BaseIT {
     	estadoRN.setDAO(estadoBD);
     } 
 
-	private void prepararCenario() {        	
+	protected void prepararCenario() {        	
     	this.carregarRN();
     } 
 	

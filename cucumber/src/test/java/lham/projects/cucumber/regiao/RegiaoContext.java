@@ -15,41 +15,34 @@ public class RegiaoContext extends BaseIT {
 
 	protected static ContinenteContext continenteContext;
 	protected static PaisContext paisContext;
-	private static RegiaoBD regiaoBD;
-	protected static RegiaoRN regiaoRN;
 	protected static EstadoContext estadoContext;
 
+	private static RegiaoBD regiaoBD;
+	protected static RegiaoRN regiaoRN;
 	protected Regiao filtro;
 	protected List<Regiao> lista;
 	protected Regiao regiao;
 	protected Regiao form;
-	protected int regioesCadastradas = 0;
-	protected String mensagemErro;
-	
-	protected final void iniciarCenario() {
-        super.startConnection();
-        this.prepararCenario();
+
+    protected void prepararCenario() {    	
+    	continenteContext = new ContinenteContext();
+    	continenteContext.carregarRN();
+    	
+    	paisContext = new PaisContext();
+    	paisContext.carregarRN();
+    	
+    	this.carregarRN();
+    	
+    	estadoContext = new EstadoContext();
+    	estadoContext.carregarRN();
     }
 
-    public void carreagarRN() {      	
+    public void carregarRN() {      	
     	regiaoBD = new RegiaoBD();
     	regiaoBD.setEntityManager(entityManager);
     	regiaoRN = new RegiaoRN();
     	regiaoRN.setRegiaoBD(regiaoBD);
     	regiaoRN.setDAO(regiaoBD);
-    }
-
-    private void prepararCenario() {    	
-    	continenteContext = new ContinenteContext();
-    	continenteContext.carregarRN();
-    	
-    	paisContext = new PaisContext();
-    	paisContext.carrearRN();
-    	
-    	this.carreagarRN();
-    	
-    	estadoContext = new EstadoContext();
-    	estadoContext.carregarRN();
     }
 	
 	protected Regiao incluir(String template) {
@@ -58,8 +51,8 @@ public class RegiaoContext extends BaseIT {
         return regiao;
     }
 	
-	protected void incluirNoveRegioes() {
-		continenteContext.cadastrarContinente(ContinenteFactory.Template.AMS.name());
+	protected void incluirRegioes() {
+		continenteContext.incluir(ContinenteFactory.Template.AMS.name());
 		
 		paisContext.incluir(PaisFactory.Template.BR.name());
 		paisContext.incluir(PaisFactory.Template.CHL.name());	
@@ -75,15 +68,15 @@ public class RegiaoContext extends BaseIT {
 		this.incluir(RegiaoFactory.Template.CHL_LESTE.toString());
 		this.incluir(RegiaoFactory.Template.CHL_OESTE.toString());	
 		
-		regioesCadastradas = 9;
+		qtdRegistros = 9;
 	}
 	
-	protected void verificaLista(String[] regioesEsperadas, String mensagem) throws Throwable {
-		assertEquals("Quantidade correta de registros", regioesEsperadas.length, lista.size());			
+	protected void verificaOrdenacao(String[] listaOrdenada, String mensagem) throws Throwable {
+		assertEquals("Quantidade correta de registros", listaOrdenada.length, lista.size());			
 		mensagem = mensagem + " (get(%s)).";	
 		
-		for (int i = 0; i < regioesEsperadas.length; i++) {
-			String esperado = regioesEsperadas[i].toUpperCase();
+		for (int i = 0; i < listaOrdenada.length; i++) {
+			String esperado = listaOrdenada[i].toUpperCase();
 			String retorno = lista.get(i).getNomeRegiao().toUpperCase();			
 			assertEquals(String.format(mensagem, i), esperado, retorno);
 		}

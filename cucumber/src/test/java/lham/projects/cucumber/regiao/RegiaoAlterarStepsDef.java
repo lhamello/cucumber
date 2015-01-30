@@ -35,7 +35,7 @@ public class RegiaoAlterarStepsDef extends RegiaoContext {
 	 */
 	@Dado("^que quero efetuar uma alteração nos campos de uma região \"(.*?)\"$")
 	public void queQueroEfetuarUmaAlteracaoNosCamposDeUmaRegiao(String template) throws Throwable {			
-		continenteContext.cadastrarContinente(ContinenteFactory.Template.AMS.name());
+		continenteContext.incluir(ContinenteFactory.Template.AMS.name());
 		paisContext.incluir(PaisFactory.Template.BR.name());
 		chile = paisContext.incluir(PaisFactory.Template.CHL.name());
 		

@@ -42,7 +42,7 @@ public class RegiaoListarStepsDef extends RegiaoContext {
 	@Quando("^eu acesso a listagem de regiões sem paginação$")
 	public void euAcessoAListagemDeRegioesSemPaginacao() throws Throwable {		
 		filtro = new Regiao();
-		filtro.getPropLista().setTamanho(super.regioesCadastradas); 
+		filtro.getPropLista().setTamanho(super.qtdRegistros); 
 		lista = regiaoRN.listar(filtro);
 	}
 
@@ -53,7 +53,7 @@ public class RegiaoListarStepsDef extends RegiaoContext {
 	
 	@Dado("^que existam registros cadastrados no banco$")
 	public void queExistamRegistrosCadastradosNoBanco() throws Throwable {
-	    super.incluirNoveRegioes();
+	    super.incluirRegioes();
 	}
 
 	@Dado("^não passo filtro nenhum para a listagem$")
@@ -71,13 +71,13 @@ public class RegiaoListarStepsDef extends RegiaoContext {
 	@Entao("^o numero total de regiões cadastrados$")
 	public void oNumeroTotalDeRegioesCadastrados() throws Throwable {
 		long tamTotal = regiaoRN.contar(filtro);
-		assertTrue("Devo receber uma pagina da listagem total.", tamTotal == super.regioesCadastradas);
+		assertTrue("Devo receber uma pagina da listagem total.", tamTotal == super.qtdRegistros);
 	}
 
 	@Entao("^devo receber uma listagem com os registros ordenados por nome de forma crescente$")
 	public void devoReceberUmaListagemComOsRegistrosOrdenadosPorNomeDeFormaCrescente() throws Throwable {
 		String[] regioesOrdenadas = new String[] {"centro-oeste", "Leste", "Nordeste", "Norte", "Norte", "Oeste", "sudeste", "Sul", "Sul"};
 		String mensagem = "Devo receber uma listagem com os registros ordenados por nome de forma crescente";
-		this.verificaLista(regioesOrdenadas, mensagem);
+		this.verificaOrdenacao(regioesOrdenadas, mensagem);
 	}
 }

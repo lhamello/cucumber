@@ -29,7 +29,7 @@ public class RegiaoPesquisarStepsDef extends RegiaoContext {
 	 */
 	@Dado("^que existam regiões cadastradas$")
 	public void queExistamRegioesCadastradas() throws Throwable {
-		super.incluirNoveRegioes();
+		super.incluirRegioes();
 		filtro = new Regiao();
 	}
 
@@ -40,7 +40,7 @@ public class RegiaoPesquisarStepsDef extends RegiaoContext {
 
 	@Quando("^eu efetuo a pesquisa de regiões$")
 	public void euEfetuoAPesquisaDeRegioes() throws Throwable {
-		filtro.getPropLista().setTamanho(super.regioesCadastradas); 
+		filtro.getPropLista().setTamanho(super.qtdRegistros); 
 	    lista = regiaoRN.listar(filtro);
 	}
 	
@@ -48,7 +48,7 @@ public class RegiaoPesquisarStepsDef extends RegiaoContext {
 	public void sãoApresentadosOsRegistrosCorrespondentesAoFiltroNomeInformado() throws Throwable {
 		String[] regioesPesquisadas = new String[] {"Sul", "Sul"};
 		String mensagem = "São apresentados os registros correspondentes ao filtro nome informado";	
-		this.verificaLista(regioesPesquisadas, mensagem);
+		this.verificaOrdenacao(regioesPesquisadas, mensagem);
 	}
 
 	@Dado("^eu preencho o filtro pais com um valor válido$")
@@ -60,7 +60,7 @@ public class RegiaoPesquisarStepsDef extends RegiaoContext {
 	public void sãoApresentadosOsRegistrosCorrespondentesAoFiltroPaisInformado() throws Throwable {
 		String[] regioesPesquisadas = new String[] {"centro-oeste", "Nordeste", "Norte", "sudeste", "Sul"};		
 		String mensagem = "São apresentados os registros correspondentes ao filtro pais informado";
-		this.verificaLista(regioesPesquisadas, mensagem);
+		this.verificaOrdenacao(regioesPesquisadas, mensagem);
 	}
 
 	@Dado("^eu preencho o filtro area com um valor válido$")
@@ -72,7 +72,7 @@ public class RegiaoPesquisarStepsDef extends RegiaoContext {
 	public void sãoApresentadosOsRegistrosCorrespondentesAoFiltroAreaInformado() throws Throwable {
 		String[] regioesPesquisadas = new String[] {"Leste", "Norte", "Oeste", "Sul"};		
 		String mensagem = "São apresentados os registros correspondentes ao filtro area informado";
-		this.verificaLista(regioesPesquisadas, mensagem);
+		this.verificaOrdenacao(regioesPesquisadas, mensagem);
 	}
 
 	@Dado("^eu preencho o filtro nome com um valor inválido$")
@@ -99,6 +99,6 @@ public class RegiaoPesquisarStepsDef extends RegiaoContext {
 	public void sãoApresentadosOsRegistrosCorrespondentesAoFiltroInformado() throws Throwable {
 		String[] regioesPesquisadas = new String[] {"Sul"};
 		String mensagem = "São apresentados os registros correspondentes ao filtro informado";	
-		this.verificaLista(regioesPesquisadas, mensagem);
+		this.verificaOrdenacao(regioesPesquisadas, mensagem);
 	}
 }

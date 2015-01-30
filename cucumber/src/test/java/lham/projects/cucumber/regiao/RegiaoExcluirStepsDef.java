@@ -32,7 +32,7 @@ public class RegiaoExcluirStepsDef extends RegiaoContext {
 	
 	@Dado("^que quero excluir uma região sem dependências \"(.*?)\"$")
 	public void queQueroExcluirUmaRegiaoSemDependencias(String template) throws Throwable {
-	    this.incluirNoveRegioes();
+	    this.incluirRegioes();
 	    filtro = RegiaoFactory.criar(template);
 	    regiao = regiaoRN.consultarUnico(filtro);
 	}
@@ -54,7 +54,7 @@ public class RegiaoExcluirStepsDef extends RegiaoContext {
 
 	@Dado("^que quero excluir uma região com dependências \"(.*?)\"$")
 	public void queQueroExcluirUmaRegiaoComDependencias(String template) throws Throwable {
-		this.incluirNoveRegioes();		
+		this.incluirRegioes();		
 	    filtro = RegiaoFactory.criar(template);
 	    regiao = regiaoRN.consultarUnico(filtro);
 	    estadoContext.incluir("BR_SUL_RS", regiao);

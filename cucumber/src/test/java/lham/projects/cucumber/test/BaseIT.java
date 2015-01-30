@@ -8,6 +8,9 @@ public abstract class BaseIT {
 
 	private static EntityManagerFactory entityManagerFactory;
 	protected static EntityManager entityManager;
+	
+	protected int qtdRegistros = 0;
+	protected String mensagemErro;
 
 	public void startConnection() {
 		if (entityManagerFactory == null || !entityManagerFactory.isOpen()) {
@@ -37,4 +40,13 @@ public abstract class BaseIT {
 		entityManager.getTransaction().rollback();
 		entityManagerFactory.close();
 	}
+	 
+	protected final void iniciarCenario() {
+       this.startConnection();
+       this.prepararCenario();
+    }
+
+	protected abstract void prepararCenario();
+	protected abstract void carregarRN();
+	
 }
