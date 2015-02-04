@@ -77,8 +77,8 @@ public class ContinenteListarStepsDef extends ContinenteContext {
 
 	@Entao("^devo receber uma listagem com os registros ordenados por nome de forma crescente$")
 	public void devoReceberUmaListagemComOsRegistrosOrdenadosPorNomeDeFormaCrescente() throws Throwable {
-		String[] regioesOrdenadas = new String[] {"Africa", "America do Norte", "America do Sul", "Asia", "Europa", "Oceania"};
+		String[] listaOrdenada = new String[] {"Africa", "America do Norte", "America do Sul", "Asia", "Europa", "Oceania"};
 		String mensagem = "Devo receber uma listagem com os registros ordenados por nome de forma crescente";
-		this.verificaOrdenacao(regioesOrdenadas, mensagem);
+		this.verificaLista(lista, listaOrdenada, mensagem);
 	}
 }

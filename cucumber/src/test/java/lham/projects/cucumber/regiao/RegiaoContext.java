@@ -1,7 +1,5 @@
 package lham.projects.cucumber.regiao;
 
-import static org.junit.Assert.assertEquals;
-
 import java.util.List;
 
 import lham.projects.cucumber.continente.ContinenteContext;
@@ -45,7 +43,7 @@ public class RegiaoContext extends BaseIT {
     	regiaoRN.setDAO(regiaoBD);
     }
 	
-	protected Regiao incluir(String template) {
+	public Regiao incluir(String template) {
         Regiao regiao = RegiaoFactory.criar(template);
         regiao = regiaoRN.incluir(regiao);
         return regiao;
@@ -57,28 +55,21 @@ public class RegiaoContext extends BaseIT {
 		paisContext.incluir(PaisFactory.Template.BR.name());
 		paisContext.incluir(PaisFactory.Template.CHL.name());	
 
-		this.incluir(RegiaoFactory.Template.BR_SUL.toString());
-		this.incluir(RegiaoFactory.Template.BR_NORTE.toString());
-		this.incluir(RegiaoFactory.Template.BR_SUDESTE.toString());
-		this.incluir(RegiaoFactory.Template.BR_NORDESTE.toString());
-		this.incluir(RegiaoFactory.Template.BR_CENTRO_OESTE.toString());		
+		this.incluir(RegiaoFactory.Template.BR_SUL.name());
+		this.incluir(RegiaoFactory.Template.BR_NORTE.name());
+		this.incluir(RegiaoFactory.Template.BR_SUDESTE.name());
+		this.incluir(RegiaoFactory.Template.BR_NORDESTE.name());
+		this.incluir(RegiaoFactory.Template.BR_CENTRO_OESTE.name());		
 
-		this.incluir(RegiaoFactory.Template.CHL_SUL.toString());
-		this.incluir(RegiaoFactory.Template.CHL_NORTE.toString());
-		this.incluir(RegiaoFactory.Template.CHL_LESTE.toString());
-		this.incluir(RegiaoFactory.Template.CHL_OESTE.toString());	
+		this.incluir(RegiaoFactory.Template.CHL_SUL.name());
+		this.incluir(RegiaoFactory.Template.CHL_NORTE.name());
+		this.incluir(RegiaoFactory.Template.CHL_LESTE.name());
+		this.incluir(RegiaoFactory.Template.CHL_OESTE.name());	
 		
 		qtdRegistros = 9;
 	}
-	
-	protected void verificaOrdenacao(String[] listaOrdenada, String mensagem) throws Throwable {
-		assertEquals("Quantidade correta de registros", listaOrdenada.length, lista.size());			
-		mensagem = mensagem + " (get(%s)).";	
-		
-		for (int i = 0; i < listaOrdenada.length; i++) {
-			String esperado = listaOrdenada[i].toUpperCase();
-			String retorno = lista.get(i).getNomeRegiao().toUpperCase();			
-			assertEquals(String.format(mensagem, i), esperado, retorno);
-		}
+
+	protected String pegarCampoComparado(Object ed) {
+		return ((Regiao) ed).getNomeRegiao();
 	}
 }

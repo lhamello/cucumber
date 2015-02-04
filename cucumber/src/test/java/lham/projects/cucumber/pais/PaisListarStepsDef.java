@@ -57,8 +57,8 @@ public class PaisListarStepsDef extends PaisContext{
 
 	@Entao("^devo receber uma listagem com os registros ordenados por nome de forma crescente$")
 	public void devoReceberUmaListagemComOsRegistrosOrdenadosPorNomeDeFormaCrescente() throws Throwable {
-		String[] regioesOrdenadas = new String[] {"Brasil", "Chile"};
+		String[] listaOrdenada = new String[] {"Brasil", "Chile"};
 		String mensagem = "Devo receber uma listagem com os registros ordenados por nome de forma crescente";
-		this.verificaOrdenacao(regioesOrdenadas, mensagem);
+		this.verificaLista(lista, listaOrdenada, mensagem);
 	}
 }

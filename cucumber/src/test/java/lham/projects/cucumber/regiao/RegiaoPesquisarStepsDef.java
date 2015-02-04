@@ -48,7 +48,7 @@ public class RegiaoPesquisarStepsDef extends RegiaoContext {
 	public void sãoApresentadosOsRegistrosCorrespondentesAoFiltroNomeInformado() throws Throwable {
 		String[] regioesPesquisadas = new String[] {"Sul", "Sul"};
 		String mensagem = "São apresentados os registros correspondentes ao filtro nome informado";	
-		this.verificaOrdenacao(regioesPesquisadas, mensagem);
+		this.verificaLista(lista, regioesPesquisadas, mensagem);
 	}
 
 	@Dado("^eu preencho o filtro pais com um valor válido$")
@@ -60,7 +60,7 @@ public class RegiaoPesquisarStepsDef extends RegiaoContext {
 	public void sãoApresentadosOsRegistrosCorrespondentesAoFiltroPaisInformado() throws Throwable {
 		String[] regioesPesquisadas = new String[] {"centro-oeste", "Nordeste", "Norte", "sudeste", "Sul"};		
 		String mensagem = "São apresentados os registros correspondentes ao filtro pais informado";
-		this.verificaOrdenacao(regioesPesquisadas, mensagem);
+		this.verificaLista(lista, regioesPesquisadas, mensagem);
 	}
 
 	@Dado("^eu preencho o filtro area com um valor válido$")
@@ -72,7 +72,7 @@ public class RegiaoPesquisarStepsDef extends RegiaoContext {
 	public void sãoApresentadosOsRegistrosCorrespondentesAoFiltroAreaInformado() throws Throwable {
 		String[] regioesPesquisadas = new String[] {"Leste", "Norte", "Oeste", "Sul"};		
 		String mensagem = "São apresentados os registros correspondentes ao filtro area informado";
-		this.verificaOrdenacao(regioesPesquisadas, mensagem);
+		this.verificaLista(lista, regioesPesquisadas, mensagem);
 	}
 
 	@Dado("^eu preencho o filtro nome com um valor inválido$")
@@ -99,6 +99,6 @@ public class RegiaoPesquisarStepsDef extends RegiaoContext {
 	public void sãoApresentadosOsRegistrosCorrespondentesAoFiltroInformado() throws Throwable {
 		String[] regioesPesquisadas = new String[] {"Sul"};
 		String mensagem = "São apresentados os registros correspondentes ao filtro informado";	
-		this.verificaOrdenacao(regioesPesquisadas, mensagem);
+		this.verificaLista(lista, regioesPesquisadas, mensagem);
 	}
 }

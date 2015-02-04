@@ -1,5 +1,9 @@
 package lham.projects.cucumber.test;
 
+import static org.junit.Assert.assertEquals;
+
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -45,8 +49,19 @@ public abstract class BaseIT {
        this.startConnection();
        this.prepararCenario();
     }
+	
+	protected void verificaLista(List listaRetornada, String[] listaEsperada, String mensagem) throws Throwable {
+		assertEquals("Quantidade correta de registros", listaEsperada.length, listaRetornada.size());			
+		mensagem = mensagem + " (get(%s)).";
+		for (int i = 0; i < listaEsperada.length; i++) {
+			String esperado = listaEsperada[i].toUpperCase();
+			String comparado = this.pegarCampoComparado(listaRetornada.get(i));
+			assertEquals(String.format(mensagem, i), esperado.toUpperCase(), comparado.toUpperCase());
+		}
+	}
 
 	protected abstract void prepararCenario();
 	protected abstract void carregarRN();
+	protected abstract String pegarCampoComparado(Object ed);
 	
 }

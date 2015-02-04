@@ -1,7 +1,5 @@
 package lham.projects.cucumber.pais;
 
-import static org.junit.Assert.assertEquals;
-
 import java.util.List;
 
 import lham.projects.cucumber.continente.ContinenteContext;
@@ -47,15 +45,8 @@ public class PaisContext extends BaseIT {
 		this.incluir(PaisFactory.Template.CHL.name());
 		this.incluir(PaisFactory.Template.BR.name());
 	}
-	
-	protected void verificaOrdenacao(String[] listaOrdenada, String mensagem) throws Throwable {
-		assertEquals("Quantidade correta de registros", listaOrdenada.length, lista.size());			
-		mensagem = mensagem + " (get(%s)).";	
-		
-		for (int i = 0; i < listaOrdenada.length; i++) {
-			String esperado = listaOrdenada[i].toUpperCase();
-			String retorno = lista.get(i).getNome().toUpperCase();			
-			assertEquals(String.format(mensagem, i), esperado, retorno);
-		}
+
+	protected String pegarCampoComparado(Object ed) {
+		return ((Pais) ed).getNome();
 	}
 }

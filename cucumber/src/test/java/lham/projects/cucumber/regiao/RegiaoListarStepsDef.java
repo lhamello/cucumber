@@ -78,6 +78,6 @@ public class RegiaoListarStepsDef extends RegiaoContext {
 	public void devoReceberUmaListagemComOsRegistrosOrdenadosPorNomeDeFormaCrescente() throws Throwable {
 		String[] regioesOrdenadas = new String[] {"centro-oeste", "Leste", "Nordeste", "Norte", "Norte", "Oeste", "sudeste", "Sul", "Sul"};
 		String mensagem = "Devo receber uma listagem com os registros ordenados por nome de forma crescente";
-		this.verificaOrdenacao(regioesOrdenadas, mensagem);
+		this.verificaLista(lista, regioesOrdenadas, mensagem);
 	}
 }

@@ -13,4 +13,8 @@ public class CidadeContext extends BaseIT {
     public void carregarRN() {    	
     	cidadeRN = CidadeRNFactory.criarCidadeRN(entityManager);
     }
+
+	protected String pegarCampoComparado(Object ed) {
+		return ((Cidade) ed).getId().getNomeCidade();
+	}
 }

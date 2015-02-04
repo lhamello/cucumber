@@ -26,4 +26,8 @@ public class EstadoContext extends BaseIT {
 		estado = estadoRN.incluir(estado);
         return estado;
     }
+
+	protected String pegarCampoComparado(Object ed) {
+		return ((Estado) ed).getSigla();
+	}
 }
